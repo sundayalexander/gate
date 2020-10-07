@@ -1,0 +1,941 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <link rel="icon" href="{% static 'image/fav.png' %}">
+    <!-- Google Fonts -->
+    <link rel="stylesheet"
+          href="http://fonts.googleapis.com/css?family=Open+Sans%3A400%2C300%2C500%2C600%2C700%7CPlayfair+Display%7CRoboto%7CRaleway%7CSpectral%7CRubik">
+
+    <link rel="stylesheet" href="{% static 'vendor/bootstrap/bootstrap.min.css' %}">
+    <!-- CSS Global Icons -->
+    {#<link rel="stylesheet" href="{% static 'vendor/icon-awesome/css/font-awesome.min.css' %}">#}
+    <link rel="stylesheet" href="{% static 'vendor/icon-line/css/simple-line-icons.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/icon-etlinefont/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/icon-line-pro/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/icon-hs/style.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/animate.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/dzsparallaxer/dzsparallaxer.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/dzsparallaxer/dzsscroller/scroller.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/dzsparallaxer/advancedscroller/plugin.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/fancybox/jquery.fancybox.min.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/slick-carousel/slick/slick.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/hs-megamenu/src/hs.megamenu.css' %}">
+    <link rel="stylesheet" href="{% static 'vendor/hamburgers/hamburgers.min.css' %}">
+
+    <link rel="stylesheet" href="{% static 'vendor/jquery-ui/themes/base/jquery-ui.min.css' %}">
+
+    <!-- CSS Unify -->
+    <link rel="stylesheet" href="{% static 'css/unify-core.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unify-components.css' %}">
+    <link rel="stylesheet" href="{% static 'css/unify-globals.css' %}">
+
+    <!-- CSS Customization -->
+    <link rel="stylesheet" href="{% static 'css/custom.css' %}">
+    <link rel="stylesheet" href="{% static 'css/animate.css' %}">        <!-- Wow Animation CSS -->
+    <link rel="stylesheet" href="{% static 'css/noty.css' %}">
+    <link rel="stylesheet" href="{% static 'css/jrange.css' %}">
+    <link rel="stylesheet" href="{% static 'css/metroui.css' %}">
+    <link rel="stylesheet" href="{% static 'css/dist/sweetalert2.css' %}">
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap4.min.css"/>
+
+    <style>
+        .float {
+            display: none;
+        }
+
+        *::-webkit-scrollbar {
+            width: 10px;
+            height: 10px;
+        }
+
+        *::-webkit-scrollbar-track {
+            background-color: #898989;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+            border-radius: 10px;
+        }
+
+        /* the new scrollbar will have a flat appearance with the set background color */
+
+        *::-webkit-scrollbar-thumb {
+            background-color: #e57d20;
+            border-radius: 10px;
+            -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0, 0.5);
+        }
+
+        /* this will style the thumb, ignoring the track */
+
+        *::-webkit-scrollbar-button {
+        {#            color: #e57d20;#} background-color: transparent;
+        }
+
+        /* optionally, you can style the top and the bottom buttons (left and right for horizontal bars) */
+
+        *::-webkit-scrollbar-corner {
+            background-color: transparent;
+        }
+
+        /* if both the vertical and the horizontal bars appear, then perhaps the right bottom corner also needs to be styled */
+
+        *::-webkit-scrollbar-button:vertical:decrement { /* Up */
+            background: url('{% static 'image/up.png' %}') no-repeat center;
+            background-size: 10px 10px !important;
+            height: 15px;
+        }
+
+        *::-webkit-scrollbar-button:vertical:increment { /* Down */
+            background: url('{% static 'image/down.png' %}') no-repeat center;
+            background-size: 10px 10px !important;
+            height: 15px;
+        {#            vertical-align: middle;#}
+        }
+
+        .dynamic-container {
+            position: relative;
+        }
+
+        .dynamic-content {
+            position: absolute;
+        }
+
+        .flip-image {
+            -webkit-transform: scaleX(-1);
+            transform: scaleX(-1);
+        }
+
+        .cursor {
+            cursor: pointer;
+        }
+
+        .easyWizardSteps {
+            list-style: none;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px
+        }
+
+        .easyWizardSteps li {
+            font-size: 18px;
+            display: inline-block;
+            padding: 10px;
+            color: #B0B1B3;
+            margin-right: 20px;
+        }
+
+        .easyWizardSteps li span {
+            font-size: 24px
+        }
+
+        .easyWizardSteps li.current {
+            color: #000
+        }
+
+        .easyWizardButtons {
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .easyWizardButtons button, .easyWizardButtons .submit {
+            cursor: pointer
+        }
+
+        .easyWizardButtons .prev {
+            float: left
+        }
+
+        .easyWizardButtons .next, .easyWizardButtons .submit {
+            float: right
+        }
+
+        #wrapper {
+            padding-left: 0;
+            -webkit-transition: all 0.6s ease;
+            -moz-transition: all 0.6s ease;
+            -o-transition: all 0.6s ease;
+            transition: all 0.6s ease;
+
+        }
+
+        #wrapper.toggled {
+            padding-left: 200px;
+        }
+
+        #sidebar-wrapper {
+            z-index: 1000;
+            position: fixed;
+            left: 250px;
+
+            width: 0;
+            height: 100%;
+            margin-left: -250px;
+            overflow-y: auto;
+            background-color: #312A25 !Important;
+
+            -webkit-transition: all 0.5s ease;
+            -moz-transition: all 0.5s ease;
+            -o-transition: all 0.5s ease;
+            transition: all 0.5s ease;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            width: 0;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+            position: absolute;
+            padding: 10px;
+        }
+
+        #wrapper.toggled #page-content-wrapper {
+            position: absolute;
+            margin-left: -250px;
+        }
+
+        /* Sidebar Styles */
+
+        .sidebar-nav {
+            position: absolute;
+            top: 0;
+            right: 15px;
+            width: 200px;
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+
+        .sidebar-nav li {
+            text-indent: 20px;
+            line-height: 40px;
+        }
+
+        .sidebar-nav li a {
+            display: block;
+            text-decoration: none;
+            color: #999999;
+        }
+
+        .sidebar-nav li a:hover {
+            text-decoration: none;
+            color: #fff;
+            background: #312A25;
+        }
+
+        .sidebar-nav li a:active,
+        .sidebar-nav li a:focus {
+            text-decoration: none;
+        }
+
+        .sidebar-nav > .sidebar-brand {
+            height: 65px;
+            font-size: 18px;
+            line-height: 60px;
+        }
+
+        .sidebar-nav > .sidebar-brand a {
+            color: #999999;
+        }
+
+        .sidebar-nav > .sidebar-brand a:hover {
+            color: #fff;
+            background: none;
+        }
+
+        .float_2 {
+            display: none;
+        }
+
+        @media (min-width: 768px) {
+            #wrapper {
+                padding-left: 220px;
+            }
+
+            #wrapper.toggled {
+                padding-left: 0;
+            }
+
+            #sidebar-wrapper {
+                width: 200px;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                width: 40px;
+
+            }
+
+            #wrapper.toggled span {
+                visibility: hidden;
+
+            }
+
+            #wrapper.toggled i {
+                float: right;
+            }
+
+            #page-content-wrapper {
+                padding: 20px;
+                position: relative;
+            }
+
+            #wrapper.toggled #page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+        }
+
+        @media (max-width: 414px) {
+
+            #wrapper.toggled #page-content-wrapper {
+                position: absolute;
+                margin-right: 60px;
+            }
+
+            #wrapper.toggled {
+                padding-right: 60px;
+            }
+
+            #wrapper {
+                padding-left: 20px;
+            }
+
+            #wrapper.toggled {
+                padding-left: 0;
+            }
+
+            #sidebar-wrapper {
+                width: 50px;
+            }
+
+            #wrapper.toggled #sidebar-wrapper {
+                width: 140px;
+
+            }
+
+            #wrapper.toggled span {
+                visibility: visible;
+                position: relative;
+                left: 70px;
+                bottom: 13px;
+
+            }
+
+            #wrapper span {
+                visibility: hidden;
+
+            }
+
+            #wrapper.toggled i {
+                float: right;
+            }
+
+            #wrapper i {
+                float: right;
+            }
+
+            #page-content-wrapper {
+                padding: 5px;
+                position: relative;
+            }
+
+            #wrapper.toggled #page-content-wrapper {
+                position: relative;
+                margin-right: 0;
+            }
+        }
+
+        .preloader {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 9999;
+            background: #fff url('{% static 'image/door.gif' %}') no-repeat center;
+        }
+
+        /* Smartphones (portrait and landscape) ----------- */
+        @media only screen
+        and (min-device-width: 320px)
+        and (max-device-width: 480px) {
+            .header_title {
+                font-size: 1.5em;
+            }
+
+            #image1 {
+                width: 150px
+            }
+
+            .hand_burger {
+                display: none;
+            {#                height: 50px;#}
+            }
+
+            .back-text {
+                font-size: 1rem !important;
+                float: right !important;
+                margin-left: 90px;
+            }
+
+            .float {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 40px;
+                right: 10px;
+                background-color: #0C9;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            .my-float {
+                margin-top: 7px;
+            }
+
+            .float_2 {
+                display: none;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 80px;
+                right: 10px;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+            }
+
+            #whatsapp {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 190px;
+                right: 10px;
+                background: #00e676;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            #call {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 150px;
+                right: 10px;
+                background: #03A9F4;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            #location {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 115px;
+                right: 10px;
+                background: #e60023;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 2px #999;
+            }
+
+            #your_order {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 80px;
+                right: 10px;
+                background: #2ab1ce;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            .door-header {
+                font-size: 15px;
+            }
+
+            .door-slider-header {
+                font-size: 15px !important;
+            }
+
+            .options {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            .control-panel {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            .door-dimension-css {
+                width: 300px !important;
+            }
+
+            .quote-text {
+                font-size: 10px;
+            }
+
+            .g-min-height-400 {
+                min-height: 300px !important;
+            }
+
+            .g-mt-30 {
+                margin-top: 0px !important;
+            }
+
+        }
+
+
+    </style>
+    {% block styles %}{% endblock %}
+    <script src="https://use.fontawesome.com/e78c015b3f.js"></script>
+
+    <title>{% block title %}{% endblock %}</title>
+</head>
+<body id="myDIV">
+<div class="preloader"></div>
+{% csrf_token %}
+<main>
+    <!-- Header -->
+    <header id="js-header" class="u-header u-header--toggle-section u-header--change-appearance"
+            data-header-fix-moment="300">
+        <div class="u-header__section u-header__section--dark g-bg-gray-dark-v2 g-transition-0_3 g-py-10"
+             data-header-fix-moment-exclude="g-py-10" data-header-fix-moment-classes="g-py-0">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <!-- Navigation -->
+                    <div class="collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg" id="navBar">
+                        <ul class="navbar-nav text-uppercase ml-auto text-center">
+                            <li class="nav-item" style="margin-right: 20px;">
+                                <a href="{% url 'checkorder' %}"> <i
+                                        class="fa fa-shopping-cart d-block g-color-primary"><strong
+                                        class="g-color-white" style="font-family: 'Open Sans',sans-serif !important;">
+                                    Check Orders </strong></i></a>
+                            </li>
+                            <li class="nav-item" style="margin-right: 20px;">
+                                <i class="fa fa-phone d-block g-color-primary"><strong class="g-color-white"
+                                                                                       style="font-family: 'Open Sans',sans-serif !important;">
+                                    +234 - 809
+                                    - 0525 - 281</strong></i>
+                            </li>
+
+                            <li class="nav-item" style="margin-right: 20px; display: inline-block;">
+                                <i class="fa fa-address-book-o d-block g-color-primary"><strong class="g-color-white"
+                                                                                                style="font-family: 'Open Sans',sans-serif !important;">
+                                    58B Morison Crescent</strong></i>
+                            </li>
+
+                            <li class="nav-item" style="margin-right: 20px; display: inline-block;">
+                                <i class="fa fa-envelope-open  d-block g-color-primary"><strong class="g-color-white"
+                                                                                                style="font-family: 'Open Sans',sans-serif !important;">
+                                    sales@mul-t-lock.com.ng</strong></i>
+                            </li>
+                        </ul>
+                    </div>
+                    <!-- End Navigation -->
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    <!-- Header -->
+    <header id="js-header" class="u-header u-header--show-hide--lg u-header--toggle-section u-header--change-appearance"
+            data-header-fix-moment="300">
+        <div class="u-header__section u-header__section--dark g-bg-white g-transition-0_3 g-py-10"
+             data-header-fix-moment-exclude="g-py-10" data-header-fix-moment-classes="g-py-0">
+            <nav class="navbar navbar-expand-lg">
+                <div class="container">
+                    <!-- Responsive Toggle Button -->
+                    <button class="navbar-toggler navbar-toggler-right btn hand_burger g-line-height-1 g-brd-none g-pa-0 g-pos-abs g-top-3 g-right-0 g-bg-primary"
+                            type="button" aria-label="Toggle navigation" aria-expanded="false" aria-controls="navBar"
+                            data-toggle="collapse" data-target="#navBar">
+                                            <span class="hamburger hamburger--slider">
+                                                <span class="hamburger-box">
+                                                    <span class="hamburger-inner"></span>
+                                                </span>
+                                            </span>
+                    </button>
+                    <!-- End Responsive Toggle Button -->
+
+
+                    <!-- Logo -->
+                    <a class="navbar-brand g-pt-10 g-pt-5--lg" href="http://www.superdoor.ng">
+                        <img src="{% static 'image/SUPERDOORLOGO_.svg' %}" alt="Super Door Logo" id="image1"
+                             class="img-fluid"/>
+                    </a>
+                    {% if home != 1 %}
+                        <a class="g-pt-10 g-pt-5--lg g-pull-right " href="{% url 'home' %}"
+                           style="text-decoration: none;float: right !important;">
+                            <div class="h5 text-uppercase g-color-gray-dark-v2 g-font-weight-700 back-text">
+                                <i class="fa fa-chevron-left" style="font-size: 12px"></i>
+                                <span style="vertical-align: middle;"> HOME <span
+                                        class="fa fa-home g-color-orange"></span></span></div>
+                        </a>
+                    {% endif %}
+                    <!-- End Logo -->
+
+                    {% comment %}<!-- Navigation -->
+                        <div class="js-mega-menu collapse navbar-collapse align-items-center flex-sm-row g-pt-10 g-pt-5--lg"
+                             id="navBar">
+                            <ul class="navbar-nav text-uppercase g-font-weight-600 ml-auto">
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="{% url 'home' %}" class="nav-link px-0">Home</a>
+                                </li>
+                                <li class="nav-item hs-has-sub-menu g-mx-20--lg">
+                                    <a href="#!" class="nav-link px-0" id="nav-link-1" aria-haspopup="true"
+                                       aria-expanded="false" aria-controls="nav-submenu-1">Our Doors</a>
+
+                                    <ul style="z-index: 999;"
+                                        class="hs-sub-menu list-unstyled g-text-transform-none g-brd-top g-brd-primary g-brd-top-2 g-min-width-200 g-mt-20 g-mt-10--lg--scrolling"
+                                        id="nav-submenu-1" aria-labelledby="nav-link-1">
+                                        <li class="dropdown-item">
+                                            <a class="nav-link g-px-0 g-color-black"
+                                               href="{% url 'categories' category='turkish' %}">Turkish Doors</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a class="nav-link g-px-0 g-color-black"
+                                               href="{% url 'categories' category='hightech' %}">High Security Doors</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a class="nav-link g-px-0 g-color-black"
+                                               href="{% url 'categories' category='ids' %}">IDS Security Doors</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a class="nav-link g-px-0 g-color-black"
+                                               href="{% url 'categories' category='wooden' %}">Wooden Cover Doors</a>
+                                        </li>
+                                        <li class="dropdown-item">
+                                            <a class="nav-link g-px-0 g-color-black"
+                                               href="{% url 'categories' category='sundoor' %}">Decorative Sundoors</a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item g-mx-20--lg">
+                                    <a href="{% url 'about' %}" class="nav-link px-0">About Us</a>
+                                </li>
+                                <li class="nav-item g-ml-20--lg g-mr-0--lg">
+                                    <a href="{% url 'contact' %}" class="nav-link px-0">Contact</a>
+                                </li>
+                                <li class="nav-item g-ml-20--lg g-mr-0--lg">
+                                    <a href="{% url 'customizer' %}" class="nav-link px-0">Customizer</a>
+                                </li>
+                            </ul>
+                        </div>
+                        <!-- End Navigation -->{% endcomment %}
+                </div>
+            </nav>
+        </div>
+    </header>
+    <!-- End Header -->
+
+    {% block body %}{% endblock %}
+    <div class="float_2">
+        <a href="https://api.whatsapp.com/send?phone=+2348090525281&text=I want to make an enquiry about Door"
+           id="whatsapp">
+            <i class="fa fa-whatsapp my-float"></i>
+        </a>
+        <a href="mailto:SALES@MUL-T-LOCK.COM.NG?Subject=I want to make an enquiry" id="call">
+            <i class="fa fa-envelope my-float"></i>
+        </a>
+        <a href="tel:+2348090525281" id="location">
+            <i class="fa fa-phone my-float"></i>
+        </a>
+        <a href="{% url 'checkorder' %}" id="your_order">
+            <i class="fa fa-shopping-cart  my-float"></i>
+        </a>
+    </div>
+    <a href="#" class="float" id="open_button">
+        <i class="fa fa-bars my-float"></i>
+    </a>
+    <a href="#" class="float" id="close_button" style="display: none;">
+        <i class="fa fa-times my-float"></i>
+    </a>
+    <!-- Footer #03 -->
+    <section class="g-pt-100">
+        <div id="shortcode3">
+            <div class="shortcode-html">
+                <!-- Footer -->
+                <div class="g-bg-black-opacity-0_9 g-color-white-opacity-0_8 g-py-60">
+                    <div class="container">
+                        <div class="row">
+                            <!-- Footer Content -->
+                            <div class="col-lg-4 col-md-6 g-mb-40 g-mb-0--lg">
+                                <div class="u-heading-v3-1 g-brd-white-opacity-0_3 g-mb-25">
+                                    <h2 class="u-heading-v3__title h6 text-uppercase g-brd-primary">SUPER<span
+                                            class="g-color-primary">DOOR</span></h2>
+                                </div>
+                                <p>
+                                    SUPER DOOR ltd. is committed and dedicated to top quality manufacturing and design
+                                    solutions of security doors and more for more than a decade.
+                                </p>
+                            </div>
+                            <!-- End Footer Content -->
+
+                            <div class="col-lg-4 col-md-6 g-mb-40 g-mb-0--lg"></div>
+
+                            <!-- Footer Content -->
+                            <div class="col-lg-4 col-md-6">
+                                <div class="u-heading-v3-1 g-brd-white-opacity-0_3 g-mb-25">
+                                    <h2 class="u-heading-v3__title h6 text-uppercase g-brd-primary">Our Contacts</h2>
+                                </div>
+
+                                <address class="g-bg-no-repeat g-line-height-2 g-mt-minus-4"
+                                         style="background-image: url('{% static 'image/map2.png' %}');">
+                                    58B Morison Crescent, Oregun
+                                    <br>
+                                    Lagos, Nigeria
+                                    <br>
+                                    Phone: +234 - 809 - 0525 - 281
+                                    <br>
+                                    Email:
+                                    <a href="mailto:sales@mul-t-lock.com.ng" class="">sales@mul-t-lock.com.ng</a>
+                                </address>
+                            </div>
+                            <!-- End Footer Content -->
+                        </div>
+                    </div>
+                </div>
+                <!-- End Footer -->
+
+                <!-- Copyright -->
+                <footer class="text-center g-py-40">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6 text-md-left g-mb-20 g-mb-0--md">
+                                {#                                <h3>SUPERDOOR</h3>#}
+                            </div>
+
+                            <div class="col-md-6 align-self-center text-md-right">
+                                <small class="g-font-size-default">&copy; 2018 All right reserved.
+                                    <a class="g-color-primary g-color-primary--hover" href="http://www.superdoor.ng">Superdoor</a>
+                                </small>
+                            </div>
+                        </div>
+                    </div>
+                </footer>
+                <!-- End Copyright -->
+            </div>
+        </div>
+    </section>
+</main>
+<div class="u-outer-spaces-helper"></div>
+
+<!-- JS Global Compulsory -->
+<script src="{% static 'vendor/jquery/jquery.min.js' %}"></script>
+<script src="{% static 'vendor/jquery-migrate/jquery-migrate.min.js' %}"></script>
+<script src="{% static 'vendor/popper.min.js' %}"></script>
+<script src="{% static 'vendor/bootstrap/bootstrap.min.js' %}"></script>
+<script type="text/javascript" src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap4.min.js"></script>
+
+<!-- JS Implementing Plugins -->
+<script src="{% static 'vendor/appear.js' %}"></script>
+<script src="{% static 'vendor/slick-carousel/slick/slick.js' %}"></script>
+<script src="{% static 'vendor/hs-megamenu/src/hs.megamenu.js' %}"></script>
+<script src="{% static 'vendor/dzsparallaxer/dzsparallaxer.js' %}"></script>
+<script src="{% static 'vendor/dzsparallaxer/dzsscroller/scroller.js' %}"></script>
+<script src="{% static 'vendor/dzsparallaxer/advancedscroller/plugin.js' %}"></script>
+
+<!-- JS Unify -->
+<script src="{% static 'js/hs.core.js' %}"></script>
+<script src="{% static 'js/components/hs.carousel.js' %}"></script>
+<script src="{% static 'js/components/hs.header.js' %}"></script>
+<script src="{% static 'js/helpers/hs.hamburgers.js' %}"></script>
+<script src="{% static 'js/components/hs.tabs.js' %}"></script>
+<script src="{% static 'js/components/hs.popup.js' %}"></script>
+<script src="{% static 'js/components/hs.counter.js' %}"></script>
+<script src="{% static 'js/components/hs.go-to.js' %}"></script>
+
+<!-- Imported Scripts-->
+<script src="{% static 'vendor/fancybox/jquery.fancybox.min.js' %}"></script>
+<script src="{% static 'js/components/hs.count-qty.js' %}"></script>
+
+<script src="{% static 'vendor/jquery-ui/ui/widget.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/version.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/keycode.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/position.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/unique-id.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/safe-active-element.js' %}"></script>
+
+<script src="{% static 'vendor/jquery-ui/ui/widgets/menu.js' %}"></script>
+<script src="{% static 'vendor/jquery-ui/ui/widgets/mouse.js' %}"></script>
+
+<script src="{% static 'vendor/jquery-ui/ui/widgets/slider.js' %}"></script>
+
+<script src="{% static 'js/components/hs.chart-pie.js' %}"></script>
+<script src="{% static 'vendor/circles/circles.min.js' %}"></script>
+
+<script src="{% static 'js/components/hs.slider.js' %}"></script>
+<script src="{% static 'js/jquery-range.js' %}"></script>
+<script src="{% static 'js/blockui.js' %}"></script>
+
+<script src="{% static 'js/noty.min.js' %}"></script>
+<script src="{% static 'js/wow.min.js' %}"></script>
+<script src="{% static 'vendor/jquery.easyWizard.js' %}"></script>
+<script src="{% static 'js/sweetalert2.all.js' %}"></script>
+<script src="{% static 'js/sweetalert2.js' %}"></script>
+
+<!-- JS Customization -->
+<script src="{% static 'js/script.js' %}?v=1810191206"></script>
+
+{% block js %}
+{% endblock %}
+
+<!-- JS Plugins Init. -->
+<script>
+    $(document).on('ready', function () {
+        // initialization of popups
+        $.HSCore.components.HSPopup.init('.js-fancybox');
+
+        // initialization of popups with media
+        $.HSCore.components.HSPopup.init('.js-fancybox-media', {
+            helpers: {
+                media: {},
+                overlay: {
+                    css: {
+                        'background': 'rgba(255, 255, 255, .8)'
+                    }
+                }
+            }
+        });
+        {#        Swal.fire({#}
+        {#            title: 'Success',#}
+        {#            text: 'Your order has been successfully placed,You will be contacted with a quote.',#}
+        {#            imageUrl: '/static/image/happy.png' ,#}
+        {#            imageWidth: 200,#}
+        {#            imageHeight: 200,#}
+        {#            imageAlt: 'Custom image',#}
+        {#            animation: true#}
+        {#        });#}
+    });
+
+    $(document).on('ready', function () {
+        // initialization of chart pies with rtl option
+        var rtlItems = $.HSCore.components.HSChartPie.init('.js-pie-rtl', {
+            rtl: true
+        });
+    });
+
+    $(document).on('ready', function () {
+        // initialization of forms
+        $.HSCore.components.HSCountQty.init('.js-quantity');
+    });
+
+    $(document).on('ready', function () {
+        // initialization of forms
+        $.HSCore.components.HSSlider.init('#regularSlider, #regularSlider2, #regularSlider3, #rangeSlider, #rangeSlider2, #rangeSlider3, #stepSlider, #stepSlider2, #stepSlider3');
+    });
+</script>
+
+<script>
+    // Counters ================================================
+    $(document).on('ready', function () {
+
+        // initialization of counters
+        var counters = $.HSCore.components.HSCounter.init('[class*="js-counter"]');
+
+        $('#open_button').on('click', function (event) {
+            event.preventDefault();
+
+            $('.float_2').css('display', 'block');
+            $('#open_button').css('display', 'none');
+            $('#close_button').css('display', 'block');
+            $('#close_button').css('background', 'red');
+        })
+        $('#close_button').on('click', function (event) {
+            event.preventDefault();
+            console.log('here');
+            $('.float_2').css('display', 'none');
+            $('#open_button').css('display', 'block');
+            $('#close_button').css('display', 'none');
+        })
+    });
+
+    // Wow animation ==============================================
+    new WOW().init();
+
+    // Customize Carousel ==============================================
+    $(document).ready(function () {
+        $.HSCore.components.HSCarousel.init('.js-carousel');
+
+        $('#carousel1').slick('setOption', 'customPaging', function (slider, i) {
+            var title = $(slider.$slides[i]).data('title');
+
+            return '<i class="u-dot-line-v1 g-brd-gray-light-v2--before g-brd-gray-light-v2--after g-mb-15--sm"><span class="u-dot-line-v1__inner g-bg-white g-bg-primary--before g-brd-gray-light-v2 g-brd-primary--active g-transition--ease-in g-transition-0_2"></span></i><span class="g-hidden-sm-down g-color-white g-font-size-15">' + title + '</span>';
+        }, true);
+    });
+
+    // Header Carousel =========================================================================================
+    $(document).on('ready', function () {
+        // initialization of tabs
+        $.HSCore.components.HSTabs.init('[role="tablist"]');
+
+        // initialization of go to
+        $.HSCore.components.HSGoTo.init('.js-go-to');
+    });
+
+    $(window).on('load', function () {
+        // initialization of header
+        $.HSCore.components.HSHeader.init($('#js-header'));
+        $.HSCore.helpers.HSHamburgers.init('.hamburger');
+
+        // initialization of HSMegaMenu component
+        $('.js-mega-menu').HSMegaMenu({
+            event: 'hover',
+            pageContainer: $('.container'),
+            breakpoint: 991
+        });
+    });
+
+    $(window).on('resize', function () {
+        setTimeout(function () {
+            $.HSCore.components.HSTabs.init('[role="tablist"]');
+        }, 200);
+
+        $('.door-width-slider').jRange({
+            from: 700,
+            to: 1800,
+            step: 1,
+            scale: [700, 900, 1200, 1400, 1600, 1800],
+            format: '%s',
+            width: 410,
+            showLabels: true
+        });
+        $('.door-height-slider').jRange({
+            from: 2100,
+            to: 2400,
+            step: 1,
+            scale: [2100, 2150, 2200, 2250, 2300, 2350, 2400],
+            format: '%s',
+            width: 410,
+            showLabels: true
+        });
+    });
+    $(window).load(function () {
+        $('.preloader').fadeOut('slow');
+
+    });
+    // Header Carousel =========================================================================================
+</script>
+</body>
+</html>

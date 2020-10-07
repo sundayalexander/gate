@@ -1,0 +1,692 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block title %}Frames{% endblock %}
+{% block bodyclass %}toggled sw-toggled{% endblock %}
+
+{% block content %}
+
+    {% include 'layout/header.html' %}
+
+
+    <section id="main" data-layout="layout-1">
+        {% include 'layout/sidebar.html' %}
+
+        <section id="content">
+            <div class="container">
+                <div class="row-fluid">
+                    <style>
+                        #loading-overlay {
+                            position: absolute;
+                            top: 0;
+                            width: 100%;
+                            height: 100%;
+                            background-color: rgba(227, 222, 241, 0.7);
+                            z-index: 10;
+                            display: none;
+                        }
+
+                        .preloader {
+                            position: absolute;
+                            top: 50%;
+                            left: 50%;
+                            transform: translateY(-50%);
+                            transform: translateX(-50%);
+                        }
+
+                        .index-data {
+                            position: relative;
+                        }
+
+                        .row ul.navbar-nav li.se-topbar-item {
+                            margin: 5px;
+                        }
+                    </style>
+                    <div class="row">
+                        <div class="col-xs-12 col-md-8">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="se-topbar-item mb-1 mb-lg-0">
+                                    <a href="{% url 'sales' which='image' %}"
+                                       class="se-topbar-button btn se-open-chat btn-secondary">
+                                        <i class="fas fa-images"></i>
+                                        Door Colors
+                                    </a>
+                                </li>
+                                <li class="se-topbar-item mb-1 mb-lg-0">
+                                    <a href="{% url 'sales' which='handle' %}"
+                                       class="se-topbar-button btn btn-secondary "
+                                       data-key="2">
+                                        <i class="fas fa-hand-grab-o"></i>
+                                        <span class="ml-1">Handles</span>
+                                    </a>
+                                </li>
+                                <li class="se-topbar-item mb-1 mb-lg-0">
+                                    <a href="{% url 'sales' which='frame' %}"
+                                       class="se-topbar-button btn btn-secondary "
+                                       data-key="2">
+                                        <i class="fas fa-square"></i>
+                                        <span class="ml-1">Frames</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+
+                        <div class="col-xs-12 col-md-4">
+                            <div class="filter filter-mailinglist">
+                                <form action="{% url 'sales' which='order' action='filter' %}" id="FilterViewForm"
+                                      method="post" accept-charset="utf-8">
+                                    <div style="display:none;">
+                                        <input type="hidden" name="_method" value="POST"></div>
+                                    <div class="col-sm-12 inline">
+                                        <div class="input-group form-group">
+                                        <span class="input-group-addon">
+                                            <i class="fa fa-search"></i>
+                                        </span>
+                                            <div class="fg-line">
+                                                <input name="search" class="form-control" placeholder="Search" value=""
+                                                       type="text" id="FilterEmail">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <div class="clearfix"></div>
+                            </div>
+                            <script type="text/javascript">
+                                $(document).ready(function () {
+                                    $('.search-icon').on('click', function (ev) {
+                                        if (!$('.search-icon').hasClass('active')) {
+                                            $('.search-icon').addClass('active');
+                                            $('.search-field input').css('width', 200);
+                                            $('.search-field input').css('padding', '2px 5px');
+                                        } else {
+                                            $('.search-field input').css('width', 0);
+                                            $('.search-field input').css('padding', '0px');
+                                            setTimeout(function () {
+                                                $('.search-icon').removeClass('active');
+                                            }, 500);
+                                        }
+                                    });
+
+                                    $("#filter-date-picker-from").on("dp.change", function (e) {
+                                        $('#FilterViewForm').submit();
+                                    });
+                                    $("#filter-date-picker-to").on("dp.change", function (e) {
+                                        $('#FilterViewForm').submit();
+                                    });
+
+                                });
+                            </script>
+                        </div>
+                    </div>
+
+
+                    <div class="index-data">
+                        <div id="loading-overlay">
+                            <div class="preloader pl-lg pls-teal">
+                                <svg class="pl-circular" viewBox="25 25 50 50">
+                                    <circle class="plc-path" cx="50" cy="50" r="20"></circle>
+                                </svg>
+                            </div>
+                        </div>
+                        <table class="index-table table-small" style="overflow: visible;">
+                            <thead>
+                            <tr>
+                                <th>
+                                </th>
+                                <th class="text-left">
+                                    #
+                                </th>
+                                <th class="text-right">Door</th>
+                                <th class="text-right">Frame</th>
+                                <th class="text-right">Series</th>
+                                <th class="text-right">Created</th>
+                                <th class="text-right"></th>
+                            </tr>
+                            </thead>
+                            <tbody id="recipients">
+                            {% for door in doors %}
+                                <tr>
+                                    <td class="checkbox-col">
+                                        <div class="checkbox">
+                                            <input type="hidden" name="data[Recipients][id][]" id="MailinglistActive_"
+                                                   value="0">
+                                            <input type="checkbox" name="data[Recipients][id][]"
+                                                   class="list-checkbox toggleable multiselect" value="155488224"
+                                                   id="MailinglistActive">
+                                            <i class="input-helper"></i>
+                                        </div>
+                                    </td>
+                                    <td class="td-single text-left pad-left-0">
+                                        <a href="javascript: void(0);">{{ door.id }}</a>
+                                    </td>
+                                    <td class="td-single text-right">
+                                        <div>{{ door.frame.door.name }}</div>
+                                    </td>
+                                    <td class="td-single text-right">
+                                        <div>{{ door.frame.name }}</div>
+                                    </td>
+                                    <td class="td-single text-right">
+                                        <div>{{ door.name }}</div>
+                                    </td>
+                                    <td class="td-single text-right">
+                                        <div>{{ door.created }}</div>
+                                    </td>
+                                    <td class="pr0">
+                                        <div class="btn-group pull-right">
+                                            <a class="btn btn-small btn-default dropdown-toggle-ajax waves-effect"
+                                               data-toggle="dropdown" href="javascript: void(0);" aria-expanded="false">
+                                                <i class="fa fa-gears"></i>
+                                                Action
+                                            </a>
+
+                                            <ul class="dropdown-menu pull-right update-status">
+                                                <li>
+                                                    <a href="{% url 'sales' which='door' action='frameColorForm' %}?door={{ door.frame.door.id }}"
+                                                       data-menuindex="2">
+                                                        <i class="fa fa-plus-circle"></i> Add Frame Color
+                                                    </a>
+                                                </li>
+                                                {#                                            <li>#}
+                                                {#                                                <a href="{% url 'sales' which='door' action='edit' %}?id={{ door.id }}" data-menuindex="3">#}
+                                                {#                                                    <i class="fa fa-edit"></i> Edit#}
+                                                {#                                                </a>#}
+                                                {#                                            </li>#}
+                                                <li>
+                                                    <a data-doorname="{{ door.name }}"
+                                                       href="{% url 'sales' which='frame' action='delete' %}?id={{ door.id }}"
+                                                       data-menuindex="4" style="color: red;">
+                                                        <i class="fa fa-remove"></i> Delete
+                                                    </a>
+                                                </li>
+                                            </ul>
+
+                                        </div>
+
+                                    </td>
+
+                                </tr>
+                            {% endfor %}
+
+                            </tbody>
+                        </table>
+                        <nav class="p-l-10">
+                            {% if doors.has_other_pages %}
+                                <ul class="pagination">
+                                    {% if doors.has_previous %}
+                                        <li class="prev">
+                                            <a class="page-link" href="?p={{ doors.previous_page_number }}">
+                                                <i class="fa fa-chevron-left"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="prev disabled"><span>
+                                      <i class="fa fa-chevron-left"></i> </span>
+                                        </li>
+                                    {% endif %}
+
+                                    {% for i in doors.paginator.page_range %}
+                                        {% if doors.number == i %}
+                                            <li class="active">
+                                                <a class="page-link" href="javascript: void(0);">{{ i }}</a>
+                                            </li>
+                                        {% else %}
+                                            <li><a class="page-link" href="?p={{ i }}">{{ i }}</a></li>
+                                        {% endif %}
+                                    {% endfor %}
+
+                                    {% if doors.has_next %}
+                                        <li class="next">
+                                            <a class="page-link" href="?p={{ doors.next_page_number }}">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    {% else %}
+                                        <li class="next disabled">
+                                            <a class="page-link" href="javascript: void(0);">
+                                                <i class="fa fa-chevron-right"></i>
+                                            </a>
+                                        </li>
+                                    {% endif %}
+                                </ul>
+                            {% endif %}
+                        </nav>
+                    </div>
+
+                    <div id="dialogs">
+                        <div id="delete_dialog"
+                             title="Are you sure you want to delete these subscribers? This action will delete subscribers from ALL the lists and cannot be undone.">
+
+                        </div>
+
+                        <div id="remove_from_list_dialog"
+                             title="Are you sure you want to remove subscribers from this list?">
+
+                        </div>
+
+
+                        <div id="unsubscribe_dialog"
+                             title="Are you sure you want to marks these recipients as unsubscribed?">
+
+                        </div>
+                        <div id="move_dialog" title="Move to another list">
+                            <div>
+                                <div id="schedule_time_dialog_div"></div>
+                                <br>
+                                <div class="form-group fg-line"><select name="data[target_mailinglist]"
+                                                                        class="selectpicker bs-select-hidden width-100"
+                                                                        id="target_mailinglist">
+                                </select>
+                                    <div class="btn-group bootstrap-select width-100">
+                                        <button type="button" class="btn dropdown-toggle btn-default"
+                                                data-toggle="dropdown"
+                                                data-id="target_mailinglist" title="Nothing selected"><span
+                                                class="filter-option pull-left">Nothing selected</span>&nbsp;<span
+                                                class="caret"></span></button>
+                                        <div class="dropdown-menu open">
+                                            <ul class="dropdown-menu inner" role="menu"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="copy_dialog" title="Copy to another list">
+                            <div>
+                                <div id="schedule_time_dialog_div"></div>
+                                <br>
+                                <div class="form-group fg-line"><select name="data[target_mailinglist]"
+                                                                        class="selectpicker bs-select-hidden width-100"
+                                                                        id="target_mailinglist">
+                                </select>
+                                    <div class="btn-group bootstrap-select width-100">
+                                        <button type="button" class="btn dropdown-toggle btn-default"
+                                                data-toggle="dropdown"
+                                                data-id="target_mailinglist" title="Nothing selected"><span
+                                                class="filter-option pull-left">Nothing selected</span>&nbsp;<span
+                                                class="caret"></span></button>
+                                        <div class="dropdown-menu open">
+                                            <ul class="dropdown-menu inner" role="menu"></ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div id="mailinglistEditDialog">
+                            <form action="https://app.sender.net/mailinglists/edit" id="MailinglistEditForm"
+                                  method="post"
+                                  accept-charset="utf-8">
+                                <div style="display:none;"><input type="hidden" name="_method" value="POST"></div>
+                                <div>
+                                    <div class="form-group fg-line required"><input name="data[Mailinglist][title]"
+                                                                                    required="required"
+                                                                                    class="form-control"
+                                                                                    placeholder="List name"
+                                                                                    maxlength="255"
+                                                                                    type="text" id="MailinglistTitle">
+                                    </div>
+                                </div>
+                                <div class="clearfix"></div>
+                            </form>
+                        </div>
+                    </div>
+                    <div id="confirmDialog" title="Are you sure?">
+                        <script type="text/javascript">
+                            RELOAD = true;
+                            var loadingRec = false;
+                            //var target = document.getElementById('list_report');
+                            var spinner = new Spinner(spinnerOpts);
+                            var keyupT = null;
+
+                            var totalCheckboxes = $('.toggleable').length;
+                            $(document).ready(function () {
+                                $('.dropdown-toggle-ajax').unbind();
+                                $('.dropdown-toggle-ajax').click(function (event) {
+                                    event.preventDefault();
+                                    if ($(this).attr("aria-expanded") === 'true') {
+                                        $('.dropdown-toggle-ajax').parent('div').removeClass('open');
+                                        $('.dropdown-toggle-ajax').attr("aria-expanded", false);
+                                        $(this).find('.zmdi').removeClass('zmdi-chevron-up');
+                                        $(this).find('.zmdi').addClass('zmdi-chevron-down');
+                                        $(this).closest('div').removeClass('open');
+                                        $(this).attr("aria-expanded", false);
+                                    } else if (typeof $(this).attr("aria-expanded") === 'undefined' || $(this).attr("aria-expanded") === 'false') {
+                                        $('.dropdown-toggle-ajax').parent('div').removeClass('open');
+                                        $('.dropdown-toggle-ajax').attr("aria-expanded", false);
+                                        $(this).find('.zmdi').removeClass('zmdi-chevron-down');
+                                        $(this).find('.zmdi').addClass('zmdi-chevron-up');
+
+                                        $(this).closest('div').addClass('open');
+                                        $(this).attr("aria-expanded", true);
+                                    }
+                                });
+
+
+                                $('.filter-dropdown-menu a').on('click', function (ev) {
+                                    ev.preventDefault();
+                                    var el = $(this);
+
+                                    $('#MailinglistCurrentSegment').val(el.data('status'));
+                                    $('.filter-title').html(el.html());
+
+                                    $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                        $('table.index-table tbody').html('');
+                                    });
+                                });
+
+                                $('#FilterEmail').on('change', function () {
+                                    $('#FilterViewForm').submit();
+//            $('#MailinglistEmail').val($('#FilterEmail').val());
+//            if (keyupT) {
+//                clearTimeout(keyupT);
+//            }
+//
+//            keyupT = setTimeout(function () {
+//                $('table.index-table tbody').html('');
+//            }, 1000);
+                                });
+
+                                $('a.select-visible').on('click', function (ev) {
+                                    ev.preventDefault();
+                                    if ($('.subscribers-actions a[data-toggle="dropdown"] .zmdi')) {
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').removeClass('zmdi-chevron-up');
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').addClass('zmdi-chevron-down');
+                                    }
+                                    $('input.toggleable').prop('checked', true);
+
+                                    $('#MailinglistSelectAll').val(0);
+                                    $('#selectionNotice').addClass('hidden');
+
+                                    showMultiActions();
+                                });
+
+                                $('a.select-all').on('click', function (ev) {
+                                    ev.preventDefault();
+                                    if ($('.subscribers-actions a[data-toggle="dropdown"] .zmdi')) {
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').removeClass('zmdi-chevron-up');
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').addClass('zmdi-chevron-down');
+                                    }
+                                    $('input.toggleable').prop('checked', true);
+
+                                    $('#MailinglistSelectAll').val(1);
+                                    $('#selectionNotice').removeClass('hidden');
+
+                                    showMultiActions();
+                                });
+
+                                $('a.deselect-all').on('click', function (ev) {
+                                    ev.preventDefault();
+                                    if ($('.subscribers-actions a[data-toggle="dropdown"] .zmdi')) {
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').removeClass('zmdi-chevron-up');
+                                        $('.subscribers-actions a[data-toggle="dropdown"] .zmdi').addClass('zmdi-chevron-down');
+                                    }
+                                    $('input.toggleable').removeAttr('checked');
+
+                                    $('#MailinglistSelectAll').val(0);
+                                    $('#selectionNotice').addClass('hidden');
+
+                                    showMultiActions();
+                                });
+
+                                $('#recipients').on('click', '.toggleable', function (ev) {
+                                    showMultiActions();
+                                });
+
+                                $('.removeFromList').on('click', function (event) {
+                                    event.preventDefault();
+                                    $('#remove_from_list_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('No'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Yes'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                $('#MailinglistAction').val('REMOVE_FROM_LIST');
+                                                $('table.index-table tbody').addClass('hide');
+                                                $('.load-more-rec .preloader').removeClass('hidden');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('.load-more-rec .preloader').addClass('hidden');
+                                                    $('table.index-table tbody').removeClass('hide');
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }],
+                                        open: function () {
+                                            if (!$('.warning').length) {
+                                                $('.ui-dialog-titlebar').prepend('<div class="icon warning pulseWarning" style="display: block;"> <span class="body pulseWarningIns"></span> <span class="dot pulseWarningIns"></span> </div>');
+                                            }
+                                        },
+                                        close: function () {
+                                            $('.warning').remove();
+                                        }
+                                    });
+                                });
+
+                                $('.remove a').click(function (event) {
+                                    event.preventDefault();
+                                    $('#delete_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('No'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Yes'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                $('#MailinglistAction').val('DELETE');
+                                                $('table.index-table tbody').addClass('hide');
+                                                $('.load-more-rec .preloader').removeClass('hidden');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('.load-more-rec .preloader').addClass('hidden');
+                                                    $('table.index-table tbody').removeClass('hide');
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }],
+                                        open: function () {
+                                            if (!$('.warning').length) {
+                                                $('.ui-dialog-titlebar').prepend('<div class="icon warning pulseWarning" style="display: block;"> <span class="body pulseWarningIns"></span> <span class="dot pulseWarningIns"></span> </div>');
+                                            }
+                                        },
+                                        close: function () {
+                                            $('.warning').remove();
+                                        }
+                                    });
+                                });
+
+                                $('.delete_permanently a').click(function (event) {
+                                    event.preventDefault();
+                                    $('#delete_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('No'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Yes'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                $('table.index-table tbody').addClass('hide');
+                                                $('.load-more-rec .preloader').removeClass('hidden');
+                                                $('#MailinglistAction').val('PERMANENT_DELETE');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('.load-more-rec .preloader').addClass('hidden');
+                                                    $('table.index-table tbody').removeClass('hide');
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }],
+                                        open: function () {
+                                            if (!$('.warning').length) {
+                                                $('.ui-dialog-titlebar').prepend('<div class="icon warning pulseWarning" style="display: block;"> <span class="body pulseWarningIns"></span> <span class="dot pulseWarningIns"></span> </div>');
+                                            }
+                                        },
+                                        close: function () {
+                                            $('.warning').remove();
+                                        }
+                                    });
+                                });
+
+                                $('.mark-unsubscribed a').click(function (event) {
+                                    event.preventDefault();
+                                    $('#unsubscribe_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('No'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Yes'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                $('#MailinglistAction').val('UNSUBSCRIBE');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }],
+                                        open: function () {
+                                            if (!$('.warning').length) {
+                                                $('.ui-dialog-titlebar').prepend('<div class="icon warning pulseWarning" style="display: block;"> <span class="body pulseWarningIns"></span> <span class="dot pulseWarningIns"></span> </div>');
+                                            }
+                                        },
+                                        close: function () {
+                                            $('.warning').remove();
+                                        }
+                                    });
+                                    /*if (confirm('Are you sure you want to marks these recipients as unsubscribed?')) {
+                    $('#MailinglistAction').val('UNSUBSCRIBE');
+                    $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                        $('table.index-table tbody').html('');
+                    });
+                }*/
+                                });
+
+                                $('.move a').click(function (event) {
+                                    event.preventDefault();
+                                    $loader = $('#loading-overlay');
+                                    $loader.show();
+                                    $('#move_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('Cancel'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Save'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                var targetList = $(this).find('#target_mailinglist').val();
+                                                $('#MailinglistTargetList').val(targetList);
+                                                $('#MailinglistAction').val('MOVE');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }]
+                                    });
+                                    $loader.hide();
+                                });
+
+                                $('.copy a').click(function (event) {
+                                    event.preventDefault();
+                                    $('#copy_dialog').dialog({
+                                        height: 210,
+                                        width: 400,
+                                        modal: true,
+                                        resizable: false,
+                                        buttons: [{
+                                            text: l('Cancel'),
+                                            class: 'btn btn-default waves-effect',
+                                            click: function () {
+                                                $(this).dialog('close');
+                                            }
+                                        }, {
+                                            text: l('Save'),
+                                            class: 'btn btn-success waves-effect',
+                                            click: function () {
+                                                var targetList = $(this).find('#target_mailinglist').val();
+                                                $('#MailinglistTargetList').val(targetList);
+                                                $('#MailinglistAction').val('COPY');
+                                                $.post($('#MailinglistMultiForm').attr('action'), $('#MailinglistMultiForm').serialize(), function (data) {
+                                                    $('table.index-table tbody').html('');
+                                                });
+                                                $(this).dialog('close');
+                                            }
+                                        }]
+                                    });
+
+
+                                });
+                            });
+
+                        </script>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </section>
+
+
+
+    <div id="cboxOverlay" style="display: none;"></div>
+    <div id="colorbox" class="" style="display: none;">
+        <div id="cboxWrapper">
+            <div>
+                <div id="cboxTopLeft" style="float: left;"></div>
+                <div id="cboxTopCenter" style="float: left;"></div>
+                <div id="cboxTopRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxMiddleLeft" style="float: left;"></div>
+                <div id="cboxContent" style="float: left;">
+                    <div id="cboxTitle" style="float: left;"></div>
+                    <div id="cboxCurrent" style="float: left;"></div>
+                    <div id="cboxNext" style="float: left;"></div>
+                    <div id="cboxPrevious" style="float: left;"></div>
+                    <div id="cboxSlideshow" style="float: left;"></div>
+                    <div id="cboxClose" style="float: left;"></div>
+                </div>
+                <div id="cboxMiddleRight" style="float: left;"></div>
+            </div>
+            <div style="clear: left;">
+                <div id="cboxBottomLeft" style="float: left;"></div>
+                <div id="cboxBottomCenter" style="float: left;"></div>
+                <div id="cboxBottomRight" style="float: left;"></div>
+            </div>
+        </div>
+        <div style="position: absolute; width: 9999px; visibility: hidden; display: none;"></div>
+    </div>
+
+{% endblock %}

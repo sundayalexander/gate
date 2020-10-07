@@ -1,0 +1,110 @@
+<div class="EmailTemplatePickerView" style="">
+    <div class="email-template-main-view container-fluid px-0">
+        <div class="row no-gutters" style="padding: 20px; border-bottom: 1px solid #ccc;">
+            <div class="col">
+                <span style="font-weight: bold; font-size: 18px;">
+                   Select a door to continue
+                </span>
+            </div>
+            <div class="email-template-picker-close c-pointer ml-auto" style="display: none;">
+                <i class="fas fa-times"></i>
+            </div>
+        </div>
+        <div class="row no-gutters pt-1 pb-2 px-3">
+            <div class="w-100">
+                <div class="email-template-categories float-left">
+                </div>
+            </div>
+        </div>
+        <!--<div class="email-template-list row no-gutters h-100">-->
+
+
+        <div class="row no-gutters pt-1 pb-2 px-3 mobile-modal">
+
+            <div class="col-md-6 col-sm-12">
+                <div class="email-template-categories align-content-center">
+                    <div class="p-1 text-center">
+                        <span class="theme-category-bubble lm-tag badge  badge-outline-light active">
+                            INTERNAL DOORS
+                        </span>
+                    </div>
+                </div>
+                {% if interior_doors.count < 1 %}
+                    <div id="interior-doors"
+                         class="email-template-list p-1 d-flex flex-wrap justify-content-center align-content-start tab-window"
+                         style="">
+                        <div class="p-3 text-center mx-auto" style="color: #989898;">
+                            <i class="far fa-folder-open fa-3x d-block"></i>
+                            <span>Empty...</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div id="interior-doors"
+                         class="email-template-list tab-window p-1 d-flex flex-wrap justify-content-center align-content-start tab-window">
+                        {% for door in interior_doors %}
+                            <div data-emailtemplateid="{{ door.id }}" data-doorname="{{ door.name }}"
+                                 class="EmailTemplateThumbnailView" data-doorpartition="{{ door.partition }}"
+                                 onclick="selectImage(this);">
+                                <div class="template-thumbnail-image-container">
+                                    <div class="template-select-img"
+                                         style="background-color: #f2f2f2;
+                                                 {% if door.thumbnail %}background-image: url({{ door.thumbnail.url }}){% endif %};">
+                                    </div>
+                                </div>
+                                <div class="email-template-title">
+                                    <span> {{ door.name }} </span>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+
+
+            <div class="col-md-6 col-sm-12">
+                <div class="email-template-categories align-content-center">
+                    <div class="p-1 text-center">
+                        <span class="theme-category-bubble lm-tag badge badge-outline-light active">
+                            EXTERNAL DOORS
+                        </span>
+
+                    </div>
+                </div>
+                {% if exterior_doors.count < 1 %}
+                    <div id="exterior-doors"
+                         class="email-template-list p-1 d-flex flex-wrap justify-content-center align-content-start tab-window"
+                         style="">
+                        <div class="p-3 text-center mx-auto" style="color: #989898;">
+                            <i class="far fa-folder-open fa-3x d-block"></i>
+                            <span>Empty...</span>
+                        </div>
+                    </div>
+                {% else %}
+                    <div id="exterior-doors"
+                         class="email-template-list tab-window p-1 d-flex flex-wrap justify-content-center align-content-start tab-window">
+                        {% for door in exterior_doors %}
+                            <div data-emailtemplateid="{{ door.id }}" data-doorname="{{ door.name }}"
+                                 class="EmailTemplateThumbnailView" data-doorpartition="{{ door.partition }}"
+                                 onclick="selectImage(this);">
+                                <div class="template-thumbnail-image-container">
+                                    <div class="template-select-img"
+                                         style="background-color: #f2f2f2;
+                                                 {% if door.thumbnail %}background-image: url({{ door.thumbnail.url }}){% endif %};">
+                                    </div>
+                                </div>
+                                <div class="email-template-title">
+                                    <span> {{ door.name }} </span>
+                                </div>
+                            </div>
+
+                        {% endfor %}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+
+

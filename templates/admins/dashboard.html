@@ -1,0 +1,147 @@
+{% extends 'layout/base.html' %}
+{% load static %}
+{% block headjs %}
+    {{ block.super }}
+    <script type="text/javascript">
+        var appRoot = '/';
+        var clang = 'eng';
+        var distinct_id;
+    </script>
+    <!-- start Mixpanel -->
+    <script type="text/javascript">(function (e, a) {
+        if (!a.__SV) {
+            var b = window;
+            try {
+                var c, l, i, j = b.location, g = j.hash;
+                c = function (a, b) {
+                    return (l = a.match(RegExp(b + "=([^&]*)"))) ? l[1] : null
+                };
+                g && c(g, "state") && (i = JSON.parse(decodeURIComponent(c(g, "state"))), "mpeditor" === i.action && (b.sessionStorage.setItem("_mpcehash", g), history.replaceState(i.desiredHash || "", e.title, j.pathname + j.search)))
+            } catch (m) {
+            }
+            var k, h;
+            window.mixpanel = a;
+            a._i = [];
+            a.init = function (b, c, f) {
+                function e(b, a) {
+                    var c = a.split(".");
+                    2 == c.length && (b = b[c[0]], a = c[1]);
+                    b[a] = function () {
+                        b.push([a].concat(Array.prototype.slice.call(arguments,
+                            0)))
+                    }
+                }
+
+                var d = a;
+                "undefined" !== typeof f ? d = a[f] = [] : f = "mixpanel";
+                d.people = d.people || [];
+                d.toString = function (b) {
+                    var a = "mixpanel";
+                    "mixpanel" !== f && (a += "." + f);
+                    b || (a += " (stub)");
+                    return a
+                };
+                d.people.toString = function () {
+                    return d.toString(1) + ".people (stub)"
+                };
+                k = "disable time_event track track_pageview track_links track_forms register register_once alias unregister identify name_tag set_config reset people.set people.set_once people.increment people.append people.union people.track_charge people.clear_charges people.delete_user".split(" ");
+                for (h = 0; h < k.length; h++) e(d, k[h]);
+                a._i.push([b, c, f])
+            };
+            a.__SV = 1.2;
+            b = e.createElement("script");
+            b.type = "text/javascript";
+            b.async = !0;
+            b.src = "undefined" !== typeof MIXPANEL_CUSTOM_LIB_URL ? MIXPANEL_CUSTOM_LIB_URL : "file:" === e.location.protocol && "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js".match(/^\/\//) ? "https://cdn.mxpnl.com/libs/mixpanel-2-latest.min.js" : "//cdn.mxpnl.com/libs/mixpanel-2-latest.min.js";
+            c = e.getElementsByTagName("script")[0];
+            c.parentNode.insertBefore(b, c)
+        }
+    })(document, window.mixpanel || []);
+    mixpanel.init("571ceaf81f043cd6db889683cd85b179", {
+        loaded: function (mixpanel) {
+            distinct_id = mixpanel.get_distinct_id();
+        }
+    });
+    </script><!-- end Mixpanel -->
+
+{% endblock %}
+
+{% block content %}
+
+    <div id="container" class="login-holder">
+        <div class="col-xs-12" style="text-align: center;">
+            <div class="lc-block toggled">
+                <div class="row m-b-20 p-b-20">
+                    <div style="text-align:center;">
+                        <a href="https://superdoor.ng">
+                            <img src="{% static 'image/logo.svg' %}" alt="superdoor customizer">
+                        </a>
+                    </div>
+                </div>
+                <div class="row m-b-20 p-b-20" style="text-align: center; color: red;">
+                    <p id="error-pane">Please, click on a location to continue</p>
+                </div>
+
+                <div class="row">
+                    <a href="{% url 'store' %}">
+                        <div class="col-xs-12 col-sm-6" style="border: solid 1px #f3ebe4; padding: 4em 1em;">
+                            <h2 class="dash-widget-title" style="font-size: large;">STORE</h2><br/>
+                            <p>Manage orders and doors.</p>
+
+                            <span class="se-topbar-button btn se-open-chat btn-secondary"
+                                  style="border-radius: 5px;">
+                                    Go to STORE <i class="fa fa-arrow-alt-circle-right"></i>
+                                </span>
+
+                        </div>
+                    </a>
+                    <a href="{% url 'sales' which='order'%}">
+                        <div class="col-xs-12 col-sm-6" style="border: solid 1px #f3ebe4; padding: 4em 1em;">
+                            <h2 class="dash-widget-title" style="font-size: large;">SALES</h2><br/>
+                            <p>Manage orders and doors.</p>
+
+                            <span class="se-topbar-button btn se-open-chat btn-secondary"
+                                  style="border-radius: 5px;">
+                                    Go to Sales <i class="fa fa-arrow-alt-circle-right"></i>
+                                </span>
+
+                        </div>
+                    </a>
+                </div>
+
+                <div class="login-labels">
+                    <label>
+                        <a href="https://superdoor.ng" class="">Superdoor</a> &copy; 2020.</label>
+                    <br>
+                    <label>
+                        All Rights Reserved.
+                    </label>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $.reject({
+                reject: {
+                    msie: false,
+                    msie5: true,
+                    msie6: true,
+                    msie7: true
+                },
+                display: ['firefox', 'chrome', 'opera', 'msie'/*,'gcf','safari'*/],
+                header: 'Your current version of Internet Explorer is outdated.',
+                paragraph1: 'If you want to use this app, you will have to upgrade your browser.',
+                paragraph2: 'Click on any link below and download new, modern browser.<br /><br />',
+                close: false,
+                imagePath: '/img/'
+            });
+
+            if ($(".alert-danger").length) {
+                $('.login-holder').effect("shake", {times: 3}, 500);
+                $('.lc-block').addClass('no-animation');
+            }
+        });
+    </script>
+{% endblock %}

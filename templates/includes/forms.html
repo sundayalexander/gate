@@ -1,0 +1,25 @@
+<form class="form" enctype="multipart/form-data" method="post" id="order-form"
+      action="{% url 'app' 'quote' 'submit' %}" style="padding: 10px;">
+    {% for hidden in form.hidden_fields %}
+        {{ hidden }}
+    {% endfor %}
+    {% for field in form.visible_fields %}
+        <div class="row">
+            <div class="col-md-4 col-sm-12">
+                <label class="text-left" style="font-family: 'Open Sans',serif; font-size: 12px!important;
+            font-weight: 600!important; color: #777777!important;" for="{{ field.id_for_label }}">{{ field.label }}
+                </label>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                {{ field }}
+            </div>
+        </div>
+    {% endfor %}
+    <hr/>
+    <button type="submit" class="swal2-confirm btn-secondary"
+            style="display: inline-block; margin: 0 auto;
+            border-left-color: rgb(48, 133, 214);
+            border-right-color: rgb(48, 133, 214);">
+        Get Quote
+    </button>
+</form>

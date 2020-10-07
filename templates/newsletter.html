@@ -1,0 +1,1173 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Customize Email  | SuperDoor {% endblock %}
+
+{% block styles %}
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="{% static 'css/bootstrap-material-datetimepicker.css' %}">
+    <style>
+
+
+        @media only screen and (max-width: 600px) {
+            #first {
+                margin-left: -35px;
+            }
+
+            #f_first {
+                margin-left: -30px;
+            }
+
+            #second, #third, #four, #five, #six, #seven {
+
+                margin-left: 30px;
+                font-size: 10px !important;
+            }
+
+            #w_second, #w_third, #w_four, #w_five, #w_six {
+
+                margin-left: 20px;
+            }
+
+            #f_second, #f_third, #f_four {
+
+                margin-left: 20px;
+            }
+
+            ul#horizontal-list {
+                display: none;
+
+            }
+
+            #small-dialog {
+                width: 100%;
+                margin: 0 auto;
+            }
+        }
+
+        @media only screen and (min-width: 992px ) {
+            #small-dialog {
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
+
+        ul#horizontal-list {
+            min-width: 1000px;
+            list-style: none;
+            margin-right: 10px;
+
+        }
+
+        ul#horizontal-list li {
+            display: inline;
+            padding-right: 2px;
+            font-size: 10px;
+            font-weight: bold;
+        }
+
+
+        input[type=range]::-moz-range-thumb {
+            box-shadow: 2px 2px 5px #000031, 0px 0px 2px #00004b;
+            border: 0px solid #00001e;
+            height: 19px;
+            width: 20px;
+            border-radius: 15px;
+            background: #e57d20;
+            cursor: pointer;
+        }
+
+        input[type=range]::-ms-track {
+            width: 100%;
+            height: 4px;
+            cursor: pointer;
+            background: transparent;
+            border-color: transparent;
+            color: transparent;
+        }
+
+        input[type=range]::-ms-fill-lower {
+            background: rgba(39, 39, 39, 0.78);
+            border: 0px solid rgba(1, 1, 1, 0);
+            border-radius: 4px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+        }
+
+        input[type=range]::-ms-fill-upper {
+            background: rgba(85, 85, 85, 0.78);
+            border: 0px solid rgba(1, 1, 1, 0);
+            border-radius: 4px;
+            box-shadow: 1px 1px 1px rgba(0, 0, 0, 0), 0px 0px 1px rgba(13, 13, 13, 0);
+        }
+
+        input[type=range]::-ms-thumb {
+            box-shadow: 2px 2px 5px #000031, 0px 0px 2px #00004b;
+            border: 0px solid #00001e;
+            height: 19px;
+            width: 20px;
+            border-radius: 15px;
+            background: #e57d20;
+            cursor: pointer;
+            height: 4px;
+        }
+
+        input[type=range]:focus::-ms-fill-lower {
+            background: rgba(85, 85, 85, 0.78);
+        }
+
+        input[type=range]:focus::-ms-fill-upper {
+            background: rgba(131, 131, 131, 0.78);
+        }
+
+    </style>
+    <style>
+        .easyWizardSteps {
+            list-style: none;
+            width: 100%;
+            overflow: hidden;
+            margin: 0;
+            padding: 0;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 20px
+        }
+
+        .easyWizardSteps li {
+            font-size: 18px;
+            display: inline-block;
+            padding: 10px;
+            color: #B0B1B3;
+            margin-right: 20px;
+        }
+
+        .easyWizardSteps li span {
+            font-size: 24px
+        }
+
+        .easyWizardSteps li.current {
+            color: #000
+        }
+
+        .easyWizardButtons {
+            overflow: hidden;
+            padding: 10px;
+        }
+
+        .easyWizardButtons button, .easyWizardButtons .submit {
+            cursor: pointer
+        }
+
+        .easyWizardButtons .prev {
+            float: left
+        }
+
+        .easyWizardButtons .next, .easyWizardButtons .submit {
+            float: right
+        }
+
+        @media only screen
+        and (min-device-width: 320px)
+        and (max-device-width: 480px) {
+            .header_title {
+                font-size: 1.5em;
+            }
+
+            #newsletter_cus {
+                font-size: 15px;
+            }
+
+            #image1 {
+                width: 150px
+            }
+
+            .hand_burger {
+                display: none;
+
+            }
+
+            .back-text {
+                font-size: 1rem !important;
+                float: right !important;
+                margin-left: 90px;
+            }
+
+            .float {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 40px;
+                right: 10px;
+                background-color: #0C9;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            .my-float {
+                margin-top: 7px;
+            }
+
+            .float_2 {
+                display: none;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 80px;
+                right: 10px;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+            }
+
+            #whatsapp {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 190px;
+                right: 10px;
+                background: #00e676;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            #call {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 150px;
+                right: 10px;
+                background: #03A9F4;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            #location {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 115px;
+                right: 10px;
+                background: #e60023;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 2px #999;
+            }
+
+            #your_order {
+                display: block;
+                position: fixed;
+                width: 25px;
+                height: 25px;
+                bottom: 80px;
+                right: 10px;
+                background: #2ab1ce;
+                color: #FFF;
+                border-radius: 50px;
+                text-align: center;
+                box-shadow: 2px 2px 3px #999;
+            }
+
+            .door-header {
+                font-size: 15px;
+            }
+
+            .door-slider-header {
+                font-size: 15px !important;
+            }
+
+            .options {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            .control-panel {
+                padding-right: 0px;
+                padding-left: 0px;
+            }
+
+            .door-dimension-css {
+                width: 300px !important;
+            }
+
+            .quote-text {
+                font-size: 10px;
+            }
+
+            .g-min-height-400 {
+                min-height: 300px !important;
+            }
+
+            .g-mt-30 {
+                margin-top: 0px !important;
+            }
+
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,300i,400,400i,500,500i%7COpen+Sans:300,300i,400,400i,600,600i,700,700i"
+          rel="stylesheet">
+    <link href='http://fonts.googleapis.com/css?family=Roboto:400,500' rel='stylesheet' type='text/css'>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/vendors.min.css' %}">#}
+    {#    <link rel="stylesheet" type="text/css" href="{% static 'css/app.min.css' %}">#}
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/slick-theme.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tables/bootstrap.css4.1.3.css' %}">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/tables/dataTables.bootstrap4.min.css' %}">
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.19/css/dataTables.bootstrap4.min.css"/>
+    <link rel="stylesheet" type="text/css"
+          href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css"/>
+
+    <style type="text/css">
+        .slider {
+            padding-top: 50px;
+            padding-bottom: 50px;
+        }
+
+        .slick-slide {
+            margin: 0px 20px;
+        }
+
+        .slick-slide img {
+            width: 100%;
+        }
+
+        .slick-prev:before,
+        .slick-next:before {
+            color: black;
+        }
+
+        .slick-slide {
+            transition: all ease-in-out .3s;
+            opacity: .2;
+        }
+
+        .slick-active {
+            opacity: .5;
+        }
+
+        .slick-current {
+            opacity: 1;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    {% csrf_token %}
+    <style>
+        .disable_a_href {
+            pointer-events: none;
+        }
+
+        .bg-if {
+            background: #000000 !important;
+        }
+    </style>
+    <section id="customize" class="g-px-40 g-bg-white">
+        <input type="hidden" id="login_user" value="{{ request.user.id }}">
+
+        <div class="container-fluid">
+            <div class="row no-gutters g-pt-25 g-mb-25">
+                <div style="display: table;margin: 0 auto">
+                    <div id="small-dialog" class="zoom-anim-dialog mfp-hide"
+                         style="background: white;padding: 10px;border-radius: 5px;">
+                        <div class="container">
+                            <div class="row">
+                                <div class="form-group col-md-12 col-sm-12">
+                                    <label> Email</label>
+                                    <input class="form-control" id="email_login" type="text"
+                                           name="email_login"
+                                           placeholder="Enter your email to login"/>
+                                </div>
+                                <div style="margin: 0 auto;display: table">
+                                    <button class="btn btn-primary" id="login_nw"
+
+                                    >login
+                                    </button>
+                                    <button class="btn btn-info" id="login_load" style="display: none"
+
+                                    >Signing you in!!!! <i class="fa fa-spinner fa-spin"></i>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="row">
+                        <h4 class="h4 text-uppercase g-color-gray-dark-v2 g-font-weight-700 text-center  g-mt-30"
+                            style="margin: 0 auto;display:table;padding-bottom: 10px">
+                            <span class="g-color-orange" id="newsletter_cus">NEWSLETTER CUSTOMIZATION</span> <a
+                                onclick="getLogout()" style="font-size: 15px;margin-left: 5px">Logout <i
+                                class="fa fa-power-off" style="color: red"></i></a></h4>
+                        <div class="col-md-12 card"
+                             style="margin: 0 auto;display: table;background-color: #fff;border: 0px solid transparent;border-radius:.4rem;box-shadow: 0 0 4px 0 rgba(0,0,0,0.2)">
+                            <form id="newsletter_form" enctype="multipart/form-data">
+                                <div class="container" id="step1">
+                                    <h3 class="title text-center" id="means_title"
+                                        style="font-size: 20px;margin-top: 20px;margin-bottom: 10px">MEDIUM
+                                        SELECTION</h3>
+                                    <hr>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label>Message Type</label>
+                                        <select class="form-control" id="medium">
+                                            <option value="1">SMS</option>
+                                            <option value="2">EMAIL</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label>SCHEDULE TYPE</label>
+                                        <select class="form-control" id="schedule_type">
+                                            <option value="NOW">NOW</option>
+                                            <option value="LATER">LATER</option>
+                                        </select>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-12">
+                                        <label>User Source</label>
+                                        <select class="form-control" id="source">
+                                            <option value="1">CSV</option>
+                                            <option value="2">System</option>
+                                        </select>
+                                    </div>
+                                    <div id="sms_op_csv">
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label>Upload a csv
+                                                <file></file>
+                                            </label>
+                                            <input class="form-control" id="sms_csv" type="file" name="sms_csv"
+                                                   placeholder="Subject"/>
+                                        </div>
+                                    </div>
+                                    <div id="sms_form">
+
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label> Schedule Date</label>
+                                            <input class="form-control" id="sms_date" type="text"
+                                                   name="sms_date"
+                                                   placeholder="Date"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label> Schedule Time</label>
+                                            <input class="form-control" id="sms_time" type="text"
+                                                   name="sms_time"
+                                                   placeholder="Subject"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                        <textarea class="form-control" id="sms_message" rows="3" name="sms_message"
+                                                  placeholder="Message"></textarea>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-6">
+                                            <input class="btn btn-primary pull-right" id="send_sms"
+                                                   type="submit"
+                                                   value="send"/>
+                                        </div>
+                                    </div>
+
+                                    <div id="email_form" style="display: none;">
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label for="email_template">Select Template</label>
+                                            <select class="form-control" id="email_template">
+                                                {% if template %}
+                                                    {% for temp in template %}
+                                                        <option value="{{ temp.id }}">{{ temp.name }}</option>
+                                                    {% endfor %}
+                                                {% endif %}
+                                            </select>
+                                        </div>
+                                        <div id="template_display"
+                                             style="margin: 0 auto;display:table;overflow-y: scroll">
+
+                                        </div>
+                                    </div>
+                                    <div class="form-group col-md-12 col-sm-6">
+                                        <button class="btn btn-primary pull-right" id="next_step_1"
+                                                style="display: none"
+                                        >Next
+                                        </button>
+                                    </div>
+                                </div>
+                                <div class="container" id="step2" style="display: none">
+                                    <h3 class="title text-center" style="font-size: 10px">EMAIL SCHEDULE</h3>
+
+                                    <div id="sms_form">
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label> Email Subject</label>
+                                            <input class="form-control" id="email_subject" type="text"
+                                                   name="email_subject"
+                                                   placeholder="Email Subject"/>
+                                        </div>
+
+                                        <input type="hidden" id="val_image" value="0">
+                                        <div class="form-group col-md-12 col-sm-12" style="display: none"
+                                             id="image_">
+                                            <label> Email CSV Image</label>
+                                            <input class="form-control" id="email_image" type="file"
+                                                   name="email_image"
+                                                   placeholder="Email Image"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label> Schedule Date</label>
+                                            <input class="form-control" id="email_date" type="text"
+                                                   name="email_date"
+                                                   placeholder="date"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                            <label> Schedule Time</label>
+                                            <input class="form-control" id="email_time" type="text"
+                                                   name="email_time"
+                                                   placeholder="time"/>
+                                        </div>
+                                        <div class="form-group col-md-12 col-sm-12">
+                                        <textarea class="form-control" id="email_message" rows="3" name="email_message"
+                                                  placeholder="Message"></textarea>
+                                        </div>
+
+                                        <div class="form-group col-md-12 col-sm-6">
+                                            <button class="btn btn-primary pull-left" id="prev_step_1"
+
+                                            >PREVIOUS
+                                            </button>
+                                            <button class="btn btn-primary pull-right" id="email_submit"
+
+                                            >SAVE
+                                            </button>
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </form>
+                        </div>
+
+                    </div>
+                </div>
+
+            </div>
+
+        </div>
+    </section>
+{% endblock %}
+
+{% block js %}
+    <script src="{% static 'vendor/slick.min.js' %}" type="text/javascript"></script>
+    {#<script type="text/javascript" src="{% static 'js/vendors.min.js' %}"> </script>#}
+    <script type="text/javascript" src="{% static 'js/check.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/backstretch.js' %}"></script>
+    <script src="{% static 'js/moment.js' %}"></script>
+    <script src="{% static 'js/moment-with-locales.min.js' %}"></script>
+    {#    <script type="text/javascript" src="{% static 'js/bootstrap-datetimepicker.js' %}"></script>#}
+    <script src="{% static "js/bootstrap-material-datetimepicker.js" %}"></script>
+    <script src="{% static "js/magnific-popup.min.js" %}"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.19/js/dataTables.bootstrap4.min.js"></script>
+    <script type="text/javascript">
+        document.getElementById("myDIV").style.overflowX = "hidden";
+        $(document).ready(function () {
+            getlogin();
+            $('#next_step_1').on('click', function (event) {
+
+                event.preventDefault();
+                $('#sms_form').hide();
+                $('#email_form').show();
+                $('#next_step_1').show();
+                $('#step1').hide();
+                $('#step2').show();
+            });
+            $('#prev_step_1').on('click', function (event) {
+
+                event.preventDefault();
+                $('#sms_form').hide();
+                $('#email_form').show();
+                $('#next_step_1').show();
+                $('#step1').show();
+                $('#step2').hide();
+            });
+            $('#sms_date').bootstrapMaterialDatePicker
+            ({
+                format: 'YYYY-MM-DD',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                time: false
+            });
+            $('#sms_time').bootstrapMaterialDatePicker
+            ({
+                format: 'HH:mm',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                date: false
+            });
+            $('#email_date').bootstrapMaterialDatePicker
+            ({
+                format: 'YYYY-MM-DD',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                time: false
+            });
+            $('#email_time').bootstrapMaterialDatePicker
+            ({
+                format: 'HH:mm',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                date: false
+            });
+
+            $('#schedule_date').bootstrapMaterialDatePicker
+            ({
+                format: 'YYYY-MM-DD',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                time: false
+            });
+            $('#medium').on('change', function (event) {
+
+                event.preventDefault();
+                var medium = $('#medium').val();
+                if (medium === '1') {
+                    $('#sms_form').show();
+                    $('#email_form').hide();
+                    $('#next_step_1').hide();
+                } else {
+                    $('#sms_form').hide();
+                    $('#email_form').show();
+                    $('#next_step_1').show();
+                    var temp = $('#email_template').val();
+                    getTemplate(temp);
+                }
+            });
+            $('#source').on('change', function (event) {
+
+                event.preventDefault();
+                var medium = $('#source').val();
+                if (medium === '2') {
+                    $('#sms_op_csv').hide();
+                } else {
+                    $('#sms_op_csv').show();
+                }
+            });
+            $('#schedule_time').bootstrapMaterialDatePicker
+            ({
+                format: 'HH:mm',
+                lang: 'en',
+                weekStart: 1,
+                cancelText: 'CLOSE',
+                nowButton: true,
+                switchOnClick: true,
+                date: false
+            });
+            $('#send_type').on('change', function (event) {
+                event.preventDefault();
+                var option = $('#send_type').val();
+                if (option === 'csv') {
+                    $('#csv_open').show();
+                } else {
+                    $('#csv_open').hide();
+                }
+
+            });
+            if ($('#source').val() != '') {
+                $('#source').trigger('change');
+            }
+            if ($('#template').val() !== '') {
+                getTemplate($('#template').val())
+            }
+
+            $('#newsletter_form').on('submit', function (event) {
+                event.preventDefault();
+                var data = new FormData($('form').get(0));
+                data.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+
+                var option = $('#send_type').val();
+                if (option === 'csv') {
+                    var csv_file = $('#csv')[0].files[0];
+                    data.append('csv_file', csv_file);
+                }
+                var image_no = parseInt($('#image_no').val());
+                var i = 0;
+                var counter = 1;
+                while (i < image_no) {
+                    var image = $('#image_' + counter)[0].files[0];
+                    data.append('image_' + counter, image);
+                    i++;
+                    counter++;
+                }
+                data.append('image_no', image_no);
+                data.append('option', option);
+                data.append('title', $('#title').val());
+                data.append('subject', $('#subject').val());
+                data.append('content', $('#email_content').val());
+                data.append('template', $('#template').val());
+                data.append('schedule_date', $('#schedule_date').val());
+                data.append('schedule_time', $('#schedule_time').val());
+                data.append('status', 'schedule');
+                $.blockUI({
+                    message: '<img src="{% static 'image/index.svg' %}">',
+                    css: {
+                        padding: 0,
+                        margin: 0,
+                        width: '50%',
+                        top: '40%',
+                        left: '25%',
+                        textAlign: 'center',
+                        color: '#000',
+                        border: 'none',
+                        backgroundColor: 'transparent',
+                        cursor: 'wait'
+                    }
+                });
+                $.ajax({
+                    url: '{% url 'EmailCustomizer' %}',
+                    type: 'post',
+                    data: data,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    enctype: 'multipart/form-data',
+                    processData: false,
+                    success: function (data) {
+                        var status = data.status;
+                        switch (status) {
+                            case 'success':
+                                $.unblockUI();
+                                Swal.fire({
+                                    title: 'Success',
+                                    text: data.message,
+                                    imageUrl: '/static/image/happy.png',
+                                    imageWidth: 200,
+                                    imageHeight: 200,
+                                    imageAlt: 'Custom image',
+                                    animation: true
+                                });
+                                setTimeout(function () {
+                                    window.location.href = "/admin/email_customizer/";
+                                }, 4000);
+                                break;
+                            case 'error':
+                                $.unblockUI();
+                                swal.fire(
+                                    "Oops",
+                                    data.message,
+                                    "error"
+                                );
+                        }
+                    }
+                });
+                return false;
+            });
+            $('#email_template').on('change', function (event) {
+                event.preventDefault();
+                var image = "<img src=\"{% static 'image/index.svg' %}\">";
+                $('#template_display').html(image);
+                var data = new FormData();
+                data.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+                data.append('template_id', $('#email_template').val());
+                data.append('status', 'template');
+                $.ajax({
+                    url: '{% url 'EmailCustomizer' %}',
+                    type: 'post',
+                    data: data,
+                    async: true,
+                    cache: false,
+                    contentType: false,
+                    processData: false,
+                    success: function (data) {
+                        var image_url = data.message;
+                        var template = data.template;
+                        $('#template_display').html(template);
+                        $('#image_no').val(data.image_no);
+                        $('#image_field').html('');
+                        var i = 0;
+                        var counter = 1;
+                        while (i < data.image_no) {
+                            {#                            $('#image_' + counter).css('display', 'block');#}
+                            var textfield = document.createElement("input");
+                            textfield.type = "file";
+                            textfield.id = "image_" + counter;
+                            textfield.setAttribute('class', 'form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15');
+
+                            {#                            textfield.setAttribute("value", "");#}
+                            document.getElementById('image_field').appendChild(textfield);
+                            i++;
+                            counter++;
+                        }
+
+                    }
+                });
+            });
+
+            $('#login_nw').on('click', function (event) {
+                event.preventDefault();
+                $('#login_load').show();
+                $('#login_nw').hide();
+                var data = {
+                    'email': $('#email_login').val(),
+                    'status': 'login',
+                    'csrfmiddlewaretoken': $('input[name=csrfmiddlewaretoken]').val()
+                };
+                console.log(data);
+                var url = "{% url 'EmailCustomizer' %}";
+                $.get(url, data, function () {
+
+                }).done(function (data) {
+                        var resp = JSON.parse(JSON.stringify(data));
+                        var status = resp.status;
+                        switch (status) {
+                            case 'success':
+                                $.magnificPopup.close();
+                                $('#login_load').hide();
+                                $('#login_nw').show();
+                                $('#login_user').val(resp.user_id);
+                                window.location.reload();
+                                break;
+                            case 'error':
+                                $.unblockUI();
+                                Swal.fire({
+                                    title: 'Oops',
+                                    text: resp.message,
+                                    type: 'error'
+                                });
+                                break;
+                        }
+                    }
+                ).fail(function (data) {
+                    Swal.fire({
+                        title: 'Oops',
+                        text: 'Something went wrong',
+                        type: 'error'
+                    })
+
+                })
+
+            })
+        });
+
+        function getlogin() {
+            var login_user = $('#login_user').val();
+            if (login_user === 'None') {
+                $.magnificPopup.open({
+                    items: {
+                        src: '#small-dialog',
+                    },
+                    type: 'inline',
+                    midClick: false,
+                    mainClass: 'mfp-fade',
+                    closeOnBgClick: false
+                });
+                $("body").addClass("bg-if");
+            }
+        }
+
+        function getTemplate(template_id) {
+            var image = "<img src=\"{% static 'image/index.svg' %}\">";
+            $('#template_display').html(image);
+            var data = new FormData();
+            data.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+            data.append('template_id', template_id);
+            data.append('status', 'template');
+            $.ajax({
+                url: '{% url 'EmailCustomizer' %}',
+                type: 'post',
+                data: data,
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                success: function (data) {
+                    var image_url = data.message;
+                    var template = data.template;
+                    $('#template_display').html(template);
+                    $('#image_no').val(data.image_no);
+                    $('#image_field').html('');
+                    var i = 0;
+                    var counter = 1;
+                    while (i < data.image_no) {
+                        var textfield = document.createElement("input");
+                        textfield.type = "file";
+                        textfield.id = "image_" + counter;
+                        {#                        textfield.setAttribute('class', '');#}
+                        textfield.className = 'image_field_style form-control image_field_style g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15';
+                        document.getElementById('image_field').appendChild(textfield);
+                        i++;
+                        counter++;
+                    }
+
+                }
+            });
+        }
+
+        function createelement(targetId, image_url) {
+            var img = document.createElement('img');
+            img.src = image_url;
+            document.getElementById(targetId).appendChild(img);
+
+        }
+
+        function getLogout() {
+            var data = {
+                'status': 'logout'
+            };
+            var url = "{% url 'EmailCustomizer' %}";
+            $.get(url, data, function () {
+
+            }).done(function (data) {
+                    var resp = JSON.parse(JSON.stringify(data));
+                    var status = resp.status;
+                    switch (status) {
+                        case 'success':
+                            window.location.reload();
+                            break;
+                        case 'error':
+                            $.unblockUI();
+                            Swal.fire({
+                                title: 'Oops',
+                                text: resp.message,
+                                type: 'error'
+                            });
+                            break;
+                    }
+                }
+            ).fail(function (data) {
+                Swal.fire({
+                    title: 'Oops',
+                    text: 'Something went wrong',
+                    type: 'error'
+                })
+
+            })
+        }
+
+        $('#send_sms').on('click', function (event) {
+            event.preventDefault();
+            inpObj = $('[id=sms_time]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[id=sms_date]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[id=sms_message]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            var data = new FormData();
+            data.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+            if ($('#source').val() === '1') {
+                var csv_file = $('#sms_csv')[0].files[0];
+                data.append('csv_file', csv_file);
+            }
+
+            data.append('sms_date', $('#sms_date').val());
+            data.append('sms_time', $('#sms_time').val());
+            data.append('sms_message', $('#sms_message').val());
+            data.append('medium', $('#medium').val());
+            data.append('source', $('#source').val());
+            data.append('schedule_type', $('#schedule_type').val());
+            data.append('status', 'sms');
+            $.blockUI({
+                message: 'Processing your requests',
+                css: {
+                    padding: 0,
+                    margin: 0,
+                    width: '50%',
+                    top: '40%',
+                    left: '25%',
+                    textAlign: 'center',
+                    color: '#000',
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                    cursor: 'wait'
+                }
+            });
+            var url = "{% url 'EmailCustomizer' %}";
+            $.ajax({
+                url: url,
+                method: 'post',
+                data: data,
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var resp = JSON.parse(JSON.stringify(data));
+                    var status = resp.status;
+
+                    switch (status) {
+                        case 'success':
+                            $.unblockUI();
+                            Swal.fire({
+                                title: 'Success',
+                                text: resp.message,
+                                imageUrl: '/static/image/happy.png',
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                                animation: true
+                            });
+                            window.location.reload();
+                            break;
+                        case 'error':
+                            $.unblockUI();
+                            Swal.fire({
+                                title: 'Oops',
+                                text: resp.message,
+                                type: 'error'
+                            });
+                            break;
+
+                    }
+
+                },
+                error: function (error) {
+                    Swal.fire({
+                        title: 'Oops',
+                        text: 'Something went wrong',
+                        type: 'error'
+                    })
+                }
+            });
+            {#call_api('post', '{% url 'core.send_sms_email' %}', '', data);#}
+        });
+
+
+        $('#email_submit').on('click', function (event) {
+            event.preventDefault();
+            inpObj = $('[id=email_subject]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[id=email_date]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[id=email_time]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[id=email_message]');
+            if (inpObj.val() === "") {
+                inpObj.focus();
+                return;
+            }
+            var data_email = new FormData();
+            data_email.append('csrfmiddlewaretoken', $('input[name=csrfmiddlewaretoken]').val());
+            if ($('#source').val() === '1') {
+                var csv_file = $('#sms_csv')[0].files[0];
+                data_email.append('email_csv', csv_file);
+            }
+            if ($('#val_image').val() === '0' || $('#val_image').val() !== '') {
+                var image_file = $('#email_image')[0].files[0];
+                data_email.append('email_image', image_file);
+            }
+            data_email.append('email_subject', $('#email_subject').val());
+            data_email.append('email_template', $('#email_template').val());
+            data_email.append('email_date', $('#email_date').val());
+            data_email.append('email_time', $('#email_time').val());
+            data_email.append('email_message', $('#email_message').val());
+            data_email.append('val_image', $('#val_image').val());
+            data_email.append('medium', $('#medium').val());
+            data_email.append('schedule_type', $('#schedule_type').val());
+            data_email.append('source', $('#source').val());
+            data_email.append('status', 'email');
+            $.blockUI({
+                message: 'Processing your requests',
+                css: {
+                    padding: 0,
+                    margin: 0,
+                    width: '50%',
+                    top: '40%',
+                    left: '25%',
+                    textAlign: 'center',
+                    color: '#000',
+                    border: 'none',
+                    backgroundColor: 'transparent',
+                    cursor: 'wait'
+                }
+            });
+            var url = "{% url 'EmailCustomizer' %}";
+            $.ajax({
+                url: url,
+                method: 'post',
+                data: data_email,
+                async: true,
+                cache: false,
+                contentType: false,
+                processData: false,
+                beforeSend: function () {
+                },
+                success: function (data) {
+                    var resp = JSON.parse(JSON.stringify(data));
+                    var status = resp.status;
+
+                    switch (status) {
+                        case 'success':
+                            $.unblockUI();
+                            Swal.fire({
+                                title: 'Success',
+                                text: resp.message,
+                                imageUrl: '/static/image/happy.png',
+                                imageWidth: 200,
+                                imageHeight: 200,
+                                imageAlt: 'Custom image',
+                                animation: true
+                            });
+                            window.location.reload();
+                            break;
+                        case 'error':
+                            $.unblockUI();
+                            Swal.fire({
+                                title: 'Oops',
+                                text: resp.message,
+                                type: 'error'
+                            });
+                            break;
+
+                    }
+
+                },
+                error: function (error) {
+                    Swal.fire({
+                        title: 'Oops',
+                        text: 'Something went wrong',
+                        type: 'error'
+                    })
+                }
+            });
+        });
+    </script>
+
+
+{% endblock %}

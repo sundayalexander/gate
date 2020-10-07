@@ -1,0 +1,184 @@
+{% load static %}
+{% if handles %}
+    {% if handles.count > 0 %}
+        {% for handle in handles %}
+            <div title="Click to select {{ handle.name }}."
+                 class="block-library-block handles se-theme-first shadow-sm card {% if forloop.first %}active{% endif %}"
+                 data-element="HeadlineRedactorBlock"
+                 data-handleid="{{ handle.id }}" data-handleimage="{{ handle.image.url }}"
+                 data-handlename="{{ handle.name }}">
+                <div class="block-library-block-content">
+                    <img src="
+
+
+                            {% if handle.thumbnail %}{{ handle.thumbnail.url }}{% else %}{{ handle.image.url }}{% endif %}"
+                         alt="{{ handle.name }}" style="height: 80%;">
+                </div>
+                <div style="font-size: 12px; font-family: Open Sans; position:relative; bottom: 10px; font-weight: 600; letter-spacing: normal; color: #000000;">
+                    {{ handle.name }}
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <div style="font-size: 12px; font-family: Open Sans; font-weight: 600; letter-spacing: normal; color: #000000">
+            No handle found!
+        </div>
+    {% endif %}
+
+
+{% elif frames %}
+    {% if frames.count > 0 %}
+        {% for frame in frames %}
+            <div class="block-library-block frames se-theme-first shadow-sm card {% if forloop.first %}active{% endif %}"
+                 data-element="HeadlineRedactorBlock"
+                 data-frameid="{{ frame.id }}" data-frameimage="{{ frame.images.first.image.url }}"
+                 data-framename="{{ frame.name }}" data-id="color-{{ frame.id }}"
+                 style="background-image: url({% static 'image/xv.png' %});
+                         background-position: center;
+                         background-repeat: no-repeat;
+                         background-size: cover;">
+                <div class="block-library-block-content">
+                    <img src="{{ frame.images.first.image.url }}" style="height: 90%;"
+                         alt="{{ frame.name }}">
+                </div>
+                <div style="font-size: 12px; font-family: Open Sans; position:relative;
+                bottom: 2px; font-weight: 600; letter-spacing: normal; left: 2px; right: 2px; color: #000000">
+                    {{ frame.name }}
+                </div>
+            </div>
+
+        {% endfor %}
+    {% else %}
+        <div style="font-size: 12px; font-family: Open Sans; font-weight: 600; letter-spacing: normal; color: #000000">
+            No frame found!
+        </div>
+    {% endif %}
+
+{% elif frame_images %}
+    {% if frame_images.count > 0 %}
+        {% for frame in frame_images %}
+            {% for image in frame.images.all %}
+                <div title="Click to select {{ image.name }} frame."
+                     class="block-library-block frame-colors se-theme-first shadow-sm card {% if forloop.first %}active{% endif %}"
+                     data-element="HeadlineRedactorBlock"
+                     data-frameid="{{ image.id }}" data-frameimage="{{ image.image.url }}"
+                     data-framename="{{ image.name }}">
+                    <div class="block-library-block-content">
+                        <img src="{{ image.image.url }}" style="height: 90%;"
+                             alt="{{ image.name }}">
+                    </div>
+                    <div style="font-size: 12px; font-family: Open Sans; position:relative;
+                                    bottom: 2px; font-weight: 600; letter-spacing: normal; left: 2px; right: 2px; color: #000000">
+                        {{ image.name }}
+                    </div>
+                </div>
+
+            {% endfor %}
+
+        {% endfor %}
+    {% else %}
+        <div style="font-size: 12px; font-family: Open Sans; font-weight: 600; letter-spacing: normal; color: #000000">
+            No frame color found!
+        </div>
+    {% endif %}
+
+{% elif images %}
+    {% if images.count > 0 %}
+        {% for image in images %}
+            <div title="Click to select {{ image.name }}."
+                 class="block-library-block door-colors {% if forloop.first %}active{% endif %}"
+                 data-element="HeadlineRedactorBlock"
+                 data-imageid="{{ image.id }}" data-imageurl="{{ image.image.url }}" data-imagename="{{ image.name }}"
+                 data-doorfinish="{{ image.finishing }}">
+                <div class="block-library-block-content">
+                    <img src="{{ image.image.url }}" style="height: 90%;"
+                         alt="{{ image.name }}">
+                </div>
+                <div style="font-size: 12px; font-family: Open Sans; position:relative;
+                bottom: 2px; font-weight: 600; letter-spacing: normal; left: 2px; right: 2px; color: #000000">
+                    {{ image.name }}
+                </div>
+            </div>
+
+        {% endfor %}
+    {% else %}
+        <div style="font-size: 12px; font-family: Open Sans; font-weight: 600; letter-spacing: normal; color: #000000">
+            No color found!
+        </div>
+    {% endif %}
+{% endif %}
+
+<script>
+    //Change door front colors
+    $('#colors-pane .door-colors').click(function () {
+        let element = $(this);
+        element.siblings().removeClass('active');
+        element.addClass('active');
+        if (element.attr('data-imageid') !== undefined && element.attr('data-imageid') !== null) {
+            $('#door-finish').text(element.attr('data-doorfinish'));
+            if (window.PARTITIONED === 'True') {
+                let part = $('#partition-container .row.active');
+                part.css(
+                    'background-image',
+                    'url(' + element.attr('data-imageurl') + ')'
+                )
+                window.FRONT_COLORS[parseInt(part.attr('data-index'))] = element.attr('data-imagename');
+                window.DOOR_IMAGES[parseInt(part.attr('data-index'))] = element.attr('data-imageid');
+                $('#door-front-color').text(window.FRONT_COLORS.join(', '));
+            } else {
+                if (window.INSIDE_VIEW) {
+                    $('#door-back-color').text(element.attr('data-imagename'));
+                    window.DOOR_BACK_IMAGE = element.attr('data-imageid');
+                    window.INSIDE_URL = element.attr('data-imageurl');
+                } else {
+                    $('#door-front-color').text(element.attr('data-imagename'));
+                    window.DOOR_IMAGE = element.attr('data-imageid');
+                    window.OUTSIDE_URL = element.attr('data-imageurl');
+                }
+                $('#door').attr('src', element.attr('data-imageurl'));
+            }
+
+        }
+    });
+
+
+    /*Change frame
+    $('.frames').click(function () {
+        let element = $(this);
+        let color_panel = $('#'+element.attr('data-id'));
+        let active_color = $('#'+element.attr('data-id')+' .frame-colors.active');
+        element.siblings().removeClass('active');
+        element.addClass('active');
+        $('#frame-style').text(element.attr('data-framename'));
+        FRAME = element.attr('data-frameid');
+        {#$('#frame').attr('src', element.attr('data-frameimage'));#}
+        color_panel.siblings().removeClass('show');
+        color_panel.addClass('show');
+
+        $('#frame-color').text(active_color.attr('data-framename'));
+        FRAME_IMAGE = active_color.attr('data-frameid');
+        $('#frame').attr('src', active_color.attr('data-frameimage'));
+
+    });
+    */
+
+    //Change frame color
+    $('.frame-colors').click(function () {
+        let element = $(this);
+        element.siblings().removeClass('active');
+        element.addClass('active');
+        $('#frame-color').text(element.attr('data-framename'));
+        FRAME_IMAGE = element.attr('data-frameid');
+        $('#frame').attr('src', element.attr('data-frameimage'));
+    });
+
+    //Change handle
+    $('.handles').click(function () {
+        let element = $(this);
+        element.siblings().removeClass('active');
+        element.addClass('active');
+        $('#handle-style').text(element.attr('data-handlename'));
+        HANDLE = element.attr('data-handleid');
+        $('#handle').attr('src', element.attr('data-handleimage'));
+    });
+</script>

@@ -1,0 +1,864 @@
+{% extends 'base.html' %}
+
+{% load static %}
+
+{% block title %}SuperDoor | Home{% endblock %}
+{% block styles %}
+    <style>
+        .slidecontainer {
+            width: 100%;
+        }
+
+        .slider {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 2px;
+            background: #566473;
+            outline: none;
+            opacity: 0.7;
+            -webkit-transition: .2s;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+        .slider::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            appearance: none;
+            width: 25px;
+            height: 25px;
+            background: #fd9233;
+            cursor: pointer;
+            border-radius: 25px;
+        }
+
+        .slider::-moz-range-thumb {
+            width: 25px;
+            height: 25px;
+            background: #fd9233;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+    </style>
+{% endblock %}
+
+{% block body %}
+    <!-- Promo Block -->
+    <section class="g-pos-rel">
+        <div class="js-carousel" data-autoplay="true" data-infinite="true" data-fade="true" data-speed="5000">
+            <div class="js-slide g-min-height-100vh g-flex-centered g-bg-cover g-bg-pos-top-center g-bg-img-hero g-bg-black-opacity-0_3--after img-fluid"
+                 style="background-image: url('{% static 'image/headers/header1.jpg' %}');"></div>
+
+            <div class="js-slide g-min-height-100vh g-flex-centered g-bg-cover g-bg-pos-top-center g-bg-img-hero g-bg-black-opacity-0_3--after img-fluid"
+                 style="background-image: url('{% static 'image/headers/header2.jpg' %}');"></div>
+
+            <div class="js-slide g-min-height-100vh g-flex-centered g-bg-cover g-bg-pos-top-center g-bg-img-hero g-bg-black-opacity-0_3--after img-fluid"
+                 style="background-image: url('{% static 'image/headers/header3.jpg' %}');"></div>
+
+            <div class="js-slide g-min-height-100vh g-flex-centered g-bg-cover g-bg-pos-top-center g-bg-img-hero g-bg-black-opacity-0_3--after img-fluid"
+                 style="background-image: url('{% static 'image/headers/header4.jpg' %}');"></div>
+        </div>
+        <div class="g-absolute-centered--y g-left-0 g-right-0 g-mt-75">
+            <div class="container g-z-index-1" id="head">
+                <div class="g-max-width-600 wow fadeInDown">
+                    <h3 class="g-color-orange g-font-style-italic g-font-weight-400 g-font-size-40 g-font-size-30--md g-mb-5">
+                        Welcome to</h3>
+                    <h1 class="g-color-orange g-font-weight-700 g-font-size-40 g-font-size-60--md" id="super"><span
+                            class="g-color-white">SUPER</span>DOOR</h1>
+                    <p class="h3 g-color-white g-font-size-22 lead g-font-style-italic g-line-height-2 g-mb-10">Our
+                        doors are built with the best materials that make them stand the test of time and weather and
+                        fire, with our IDS doors.</p>
+                </div>
+
+                <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400 wow fadeInUp">
+                    <div class="input-group-append row">
+                        <a href="#customize" class="btn btn-xl u-btn-orange g-mr-10 g-mb-15">Build Your Door</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Promo Block -->
+
+    <!-- Icon Blocks v14 -->
+    <section class="g-bg-orba-gradient-opacity-v1" style="padding: 40px;">
+        <div class="container">
+            <div id="shortcode14">
+                <div class="shortcode-html">
+                    <!-- Icon Blocks -->
+                    <div class="row no-gutters u-shadow-v21 g-color-white">
+                        <div class="col-md-4 col-sm-4 col-lg-4  g-py-15 g-pa-100-30--sm wow bounceInDown">
+                            <!-- Icon Blocks -->
+                            <div class="u-info-v2-2 g-color-white text-center">
+                                <div class="u-info-v2-2__item g-brd-white-dark-v3 g-px-20 g-pb-30">
+                                    <span class="u-icon-v1 u-icon-size--2xl g-line-height-1 g-color-white g-pull-50x-up">
+                                        <i class="fa fa-wrench "></i>
+                                    </span>
+                                    <h3 class="h5 g-font-weight-600 g-mt-minus-35 g-mb-10">You Design, We Build</h3>
+                                    <p class="g-color-white-opacity-0_7 g-mb-15">The customizer allows our users build
+                                        their dream door to their specific taste. Color, Style, Accessories, all
+                                        customizable.</p>
+                                </div>
+                            </div>
+                            <!-- End Icon Blocks -->
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-lg-4  g-py-15 g-pa-100-30--sm wow bounceInUp">
+                            <!-- Icon Blocks -->
+                            <div class="u-info-v2-2 g-color-white text-center">
+                                <div class="u-info-v2-2__item g-brd-white-dark-v3 g-px-20 g-pb-30">
+                                    <span class="u-icon-v1 u-icon-size--2xl g-line-height-1 g-color-white g-pull-50x-up">
+                                        <i class="fa fa-diamond "></i>
+                                    </span>
+                                    <h3 class="h5 g-font-weight-600 g-mt-minus-35 g-mb-10">Strong & Durable</h3>
+                                    <p class="g-color-white-opacity-0_7 g-mb-15">Weatherproof? Fireproof? We got you
+                                        covered as our doors are built to stand the test of time and various weather
+                                        conditions.</p>
+                                </div>
+                            </div>
+                            <!-- End Icon Blocks -->
+                        </div>
+
+                        <div class="col-md-4 col-sm-4 col-lg-4  g-py-15 g-pa-100-30--sm wow bounceInDown">
+                            <!-- Icon Blocks -->
+                            <div class="u-info-v2-2 g-color-white text-center">
+                                <div class="u-info-v2-2__item g-brd-white-dark-v3 g-px-20 g-pb-30">
+                                    <span class="u-icon-v1 u-icon-size--2xl g-line-height-1 g-color-white g-pull-50x-up">
+                                        <i class="fa fa-comments "></i>
+                                    </span>
+                                    <h3 class="h5 g-font-weight-600 g-mt-minus-35 g-mb-10">24/7 Customer Service</h3>
+                                    <p class="g-color-white-opacity-0_7 g-mb-15">In need of further assistance? Our
+                                        customer service representatives are readily available to assist you through
+                                        every step of the way.</p>
+                                </div>
+                            </div>
+                            <!-- End Icon Blocks -->
+                        </div>
+                    </div>
+                    <!-- End Icon Blocks -->
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Icon Blocks v14 -->
+
+    <!-- Gallery -->
+    <section class="g-bg-gray-dark-v1 g-color-white g-pa-40">
+        <div class="row">
+            <div class="col-md-12 col-lg-4 col-sm-12 text-center">
+                <hr>
+                <h2 class="u-heading-v8__title g-color-white text-uppercase g-font-size-45 g-font-weight-500 g-pt-105">
+                    The<span class="g-color-orange"> New</span> 2018 Collection!</h2>
+                <hr>
+            </div>
+
+            <div class="col-md-8 col-lg-8 col-sm-12 wow slideInRight">
+                <div class="js-carousel g-bg-gray-dark-v1"
+                     data-infinite="true" data-autoplay="true" data-speed="7000" data-center-mode="false"
+                     data-center-padding="200px" data-slides-show="3"
+                     data-arrows-classes="u-arrow-v1 g-absolute-centered--y g-width-45 g-height-45 g-font-size-20 g-brd-style-solid g-brd-2 g-color-white g-bg-black-opacity-0_5--hover g-transition-0_3 rounded-circle"
+                     data-arrow-left-classes="fa fa-angle-left g-left-20"
+                     data-arrow-right-classes="fa fa-angle-right g-right-20"
+                     data-responsive='[{
+                        "breakpoint": 1200,
+                        "settings": {
+                        "slidesToShow": 2,
+                        "centerPadding": "30px"
+                        }
+                        }, {
+                        "breakpoint": 992,
+                        "settings": {
+                        "slidesToShow": 1,
+                        "centerPadding": "60px"
+                        }
+                        }, {
+                        "breakpoint": 650,
+                        "settings": {
+                        "slidesToShow": 1,
+                        "centerPadding": "40px"
+                        }
+                        }]'>
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/1.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/1.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/2.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/2.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/3.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/3.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/4.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/4.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/5.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/5.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/6.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/6.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/7.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/7.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/8.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/8.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/9.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/9.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+
+                    <!-- Article -->
+                    <div class="js-slide g-py-10 g-px-5">
+                        <div class="">
+                            <div class="text-center" style="position: relative">
+                                <img class="u-block-hover__img u-block-hover__main--blur"
+                                     src="{% static 'image/caro/10.jpg' %}" alt="Image description">
+                                <a class="js-fancybox d-block u-block-hover__additional--blur g-bg-primary g-color-white g-pa-30"
+                                   href="javascript:;" data-fancybox="wooden_images"
+                                   data-src="{% static 'image/caro/10.jpg' %}"
+                                   data-speed="1000" data-overlay-blur-bg="true"
+                                   data-caption="{{ door.name }}">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- End Article -->
+                </div>
+                <!-- End Promo Block -->
+            </div>
+        </div>
+    </section>
+    <!-- End Gallery -->
+
+    <!--Customizer Start-->
+    <section id="customize" class="g-pa-40 g-bg-invorba-gradient-opacity-v1">
+        <div class="container">
+            <div class="text-center g-mb-20">
+                <h2 class="u-heading-v8__title g-color-white text-uppercase g-font-size-45 g-font-weight-700 g-mb-0">
+                    <span class="g-color-orange">SUPERDOOR</span> BUILDER</h2>
+                <br>
+                <p class="lead g-font-weight-400 g-mb-20 g-color-white">Design Your Dream Door. Select from a range of
+                    options and create doors unique to your specific needs</p>
+            </div>
+
+            <div class="row no-gutters g-pt-25">
+                <div class="col-lg-6 g-color-white control-panel">
+                    <!-- Dynamic Process -->
+                    <div id="carousel1" class="js-carousel col-12">
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Interior / Exterior">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-30 g-mt-30">What type of
+                                    door do you <span class="g-color-orange">desire</span>?</h3>
+
+                                <div class="g-mb-5 col-12" style="height: 400px; overflow-y: auto;">
+                                    <div class="row g-m">
+                                        <div class="col-md-6">
+                                            <article
+                                                    class="text-center u-block-hover g-bg-gray-dark-v2--hover g-transition-0_4"
+                                                    type-input="int">
+                                                {#                                                <figure>#}
+                                                {#                                                    <img class="img-fluid u-block-hover__main--zoom-v1" src="{% static 'image/thumb/intext/int.jpg' %}" alt="Image Description">#}
+                                                {#                                                </figure>#}
+                                                <h3 class="h6 text-uppercase g-font-weight-600 g-letter-spacing-2 g-color-white--hover g-pa-30-20 g-mb-0">
+                                                    Interior Door</h3>
+                                            </article>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <article
+                                                    class="text-center u-block-hover g-bg-gray-dark-v2--hover g-transition-0_4"
+                                                    type-input="ext">
+                                                {#                                                <figure>#}
+                                                {#                                                    <img class="img-fluid u-block-hover__main--zoom-v1" src="{% static 'image/thumb/intext/ext.jpg' %}" alt="Image Description">#}
+                                                {#                                                </figure>#}
+                                                <h3 class="h6 text-uppercase g-font-weight-600 g-letter-spacing-2 g-color-white--hover g-pa-30-20 g-mb-0">
+                                                    Exterior Door</h3>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Single / Double">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-30 g-mt-30">How many
+                                    <span class="g-color-orange">sides</span> should it have?</h3>
+
+                                <div class="g-mb-5 col-12" style="height: 400px; overflow-y: auto;">
+                                    <div class="row g-m">
+                                        <div class="col-md-6">
+                                            <article
+                                                    class="text-center u-block-hover g-bg-gray-dark-v2--hover g-transition-0_4"
+                                                    cat-input="single">
+                                                <figure>
+                                                    <img class="img-fluid u-block-hover__main--zoom-v1"
+                                                         src="{% static 'image/thumb/sindou/sin.jpg' %}"
+                                                         alt="Image Description"
+                                                    >
+                                                </figure>
+                                                <h3 class="h6 text-uppercase g-font-weight-600 g-letter-spacing-2 g-color-white--hover g-pa-30-20 g-mb-0">
+                                                    Single</h3>
+                                            </article>
+                                        </div>
+
+                                        <div class="col-md-6">
+                                            <article
+                                                    class="text-center u-block-hover g-bg-gray-dark-v2--hover g-transition-0_4"
+                                                    cat-input="double">
+                                                <figure>
+                                                    <img class="img-fluid u-block-hover__main--zoom-v1"
+                                                         src="{% static 'image/thumb/sindou/dou.jpg' %}"
+                                                         alt="Image Description">
+                                                </figure>
+                                                <h3 class="h6 text-uppercase g-font-weight-600 g-letter-spacing-2 g-color-white--hover g-pa-30-20 g-mb-0">
+                                                    Double</h3>
+                                            </article>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                    <div class="input-group-append row">
+                                        <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Door Style">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Choose a door
+                                    <span class="g-color-orange">style</span> that suits your needs</h3>
+
+                                <div class="g-mb-5 col-12 door-style" style="height: 400px; overflow-y: auto;">
+
+                                </div>
+                                <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                    <div class="input-group-append row">
+                                        <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Door Color">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Select a door
+                                    <span class="g-color-orange">color</span></h3>
+                                <div class="door-color">
+
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Frame Type">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Choose a
+                                    frame <span class="g-color-orange">style</span> that will look good on your door
+                                </h3>
+
+                                <div class="frame-style">
+                                    <div class="g-mb-5 col-12" style="height: 400px; overflow-y: auto;">
+                                        <div class="row g-m">
+                                            <div class="text-white text-center col-12 g-pt-50">No frames available for
+                                                selected door
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                        <div class="input-group-append row">
+                                            <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                            <span class="btn btn-md u-btn-orange g-mr-10 g-mb-15 next">Next</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Frame Color">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Select a
+                                    frame <span class="g-color-orange">color</span></h3>
+
+                                <div class="frame-color">
+                                    <div class="g-mb-5 col-12" style="height: 400px; overflow-y: auto;">
+                                        <div class="row g-m">
+                                            <div class="text-white text-center col-12 g-pt-50">No Colors available
+                                                for selected frame
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                        <div class="input-group-append row">
+                                            <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                            <span class="btn btn-md u-btn-orange g-mr-10 g-mb-15 next">Next</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm" data-title="Dimensions">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Adjust
+                                    Dimensions for the <span class="g-color-orange">Door</span> and <span
+                                            class="g-color-orange">Frame</span> if you wish</h3>
+                                <h5 class="g-color-orange g-mb-25">*Drag sliders to change value</h5>
+
+                                <div class="g-mb-5 col-12" style="height: 400px; overflow-y: auto;">
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Door Height:
+                                            <span class="g-color-primary">
+                                                ( <span id="door_height">2007</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="door_height"
+                                             data-default="2007" data-min="500" data-max="2500"></div>
+                                    </div>
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Door Width:
+                                            <span class="g-color-primary">
+                                                ( <span id="door_width">720</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="door_width"
+                                             data-default="720" data-min="500" data-max="1500"></div>
+                                    </div>
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Door Thickness:
+                                            <span class="g-color-primary">
+                                                ( <span id="door_thickness">70</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="door_thickness" data-default="70" data-min="50"
+                                             data-max="500"></div>
+                                    </div>
+
+                                    <hr>
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Frame Height:
+                                            <span class="g-color-primary">
+                                                ( <span id="frame_height">2107</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="frame_height" data-default="2107" data-min="500"
+                                             data-max="2700"></div>
+                                    </div>
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Frame Width:
+                                            <span class="g-color-primary">
+                                                ( <span id="frame_width">100</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="frame_width"
+                                             data-default="100" data-min="50" data-max="200"></div>
+                                    </div>
+
+                                    <div class="form-group g-mb-40">
+                                        <label class="g-mb-10 g-color-white">
+                                            Frame Thickness:
+                                            <span class="g-color-primary">
+                                                ( <span id="frame_thickness">50</span> mm)
+                                            </span>
+                                        </label>
+
+                                        <div id="regularSlider2" class="u-slider-v1"
+                                             data-result-container="frame_thickness" data-default="70" data-min="50"
+                                             data-max="500"></div>
+                                    </div>
+
+                                </div>
+                                <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                    <div class="input-group-append row">
+                                        <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                        <span class="btn btn-md u-btn-orange g-mr-10 g-mb-15 next">Next</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+
+                        <div class="js-slide g-pt-55 g-pt-10--sm c-slide" data-title="Contact">
+                            <!-- Dynamic Process -->
+                            <div>
+                                <h3 class="h4 g-color-white g-font-weight-700 text-center g-mb-25 g-mt-30">Please
+                                    give
+                                    us your <span class="g-color-orange">info</span> for contact</h3>
+
+                                <div class="d-flex">
+                                    <div class="align-self-center w-100">
+                                        <form>
+
+                                            <div class="form-group g-mb-10">
+                                                <input class="form-control g-color-white g-bg-black-opacity-0_4 g-brd-black-opacity-0_4 g-brd-primary--focus rounded-0 g-pa-15"
+                                                       type="text" placeholder="Name" name="name" required>
+                                            </div>
+                                            <div class="form-group g-mb-10">
+                                                <input class="form-control g-color-white g-bg-black-opacity-0_4 g-brd-black-opacity-0_4 g-brd-primary--focus rounded-0 g-pa-15"
+                                                       type="tel" placeholder="Phone Number" name="number" required>
+                                            </div>
+                                            <div class="form-group g-mb-10">
+                                                <input class="form-control g-color-white g-bg-black-opacity-0_4 g-brd-black-opacity-0_4 g-brd-primary--focus rounded-0 g-pa-15"
+                                                       type="email" placeholder="Email" name="email" required>
+                                            </div>
+                                            <div class="form-group g-mb-40">
+                                                <textarea
+                                                        class="form-control g-resize-none g-color-white g-bg-black-opacity-0_4 g-brd-black-opacity-0_4 g-brd-primary--focus rounded-0 g-pa-15"
+                                                        rows="3" placeholder="Address" name="address"
+                                                        required></textarea>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+
+                                <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400">
+                                    <div class="input-group-append row">
+                                        <span class="btn btn-md u-btn-darkgray g-mr-10 g-mb-15 prev">Previous</span>
+                                        <span class="btn btn-md u-btn-orange g-mr-10 g-mb-15 order">Order</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- End Dynamic Process -->
+                        </div>
+                    </div>
+                    <!-- End Dynamic Process -->
+                </div>
+
+                <div class="col-lg-6 g-min-height-400 g-bg-size-cover g-bg-pos-center dynamic-container text-center d-none">
+                    <img class="door img-fluid d-none dynamic-content" src="#" height="465" style="height: 465px;">
+                    <img class="frame img-fluid d-none dynamic-content" src="#">
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- End Customizer -->
+
+    <!--About Superdoor-->
+    <section class="g-bg-orba-gradient-opacity-v1 g-pa-40">
+        <!-- Team -->
+        <div class="container g-pt-100 g-pb-70">
+            <div class="text-center g-mb-20 col-sm-12 ">
+                <h2 class="u-heading-v8__title g-color-white text-uppercase g-font-size-45 g-font-weight-700 g-mb-0">
+                    <span class="g-color-black-opacity-0_9">About</span> SuperDoor</h2>
+            </div>
+
+            <hr class="g-brd-gray-light-v4 g-my-80 wow slideInLeft">
+
+
+            <div class="row justify-content-between">
+                <div class="col-lg-6 g-mb-30">
+                    <h4 class="h5 g-line-height-1_2 g-color-white">SUPER-DOOR Ltd. Is a leader in manufacturing and
+                        marketing of doors.</h4>
+
+                    <em class="g-color-white g-font-size-120 g-pos-abs g-top-minus-40 g-left-minus-15 g-z-index-minus-1">
+                        &#8220;
+                    </em>
+                    <blockquote class="lead g-color-white g-font-style-italic g-line-height-2 g-pl-30 g-mb-30">
+                        We design and produce Steel Security Doors, interior doors, gates, Locks Systems and wide range
+                        of steel products. Our factory based in Lagos, Nigeria, provides high quality solutions for our
+                        customer’s security and design needs.
+                        By using the state of art computerized machinery our doors and all iron products are precise
+                        according to the client’s requirements, dimensions and quality.
+                    </blockquote>
+
+                    <div class="input-group u-shadow-v19 g-rounded-50 g-max-width-400 wow fadeInUp">
+                        <div class="input-group-append row">
+                            <a href="#customize" class="btn btn-xl u-btn-orange g-mr-10 g-mb-15">Build Your Door</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-5 d-none d-lg-block">
+                    <div style="width: 544px; height: 306px;">
+                        <img src="{% static 'image/about/1.png' %}" alt="Image Description" id="image1"
+                             class="wow slideInRight img-fluid" data-wow-duration="2s"/>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- End Team -->
+    </section>
+    <!--End About Superdoor-->
+
+    <!-- Counter -->
+    <section class="g-bg-gray-dark-v1 g-color-white">
+        <!-- Counter #03 -->
+        <section class="g-py-100">
+            <div class="container g-pa-10 wow slideInDown">
+                <div class="row text-center text-uppercase g-color-white">
+                    <div class="col-lg-3 col-sm-3 g-brd-right g-brd-white-opacity-0_2">
+                        <div class="js-counter g-font-size-35 g-font-weight-300 g-mb-7">47</div>
+                        <h4 class="h5 g-color-white-opacity-0_6">Happy Customers</h4>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3 g-brd-right--lg g-brd-white-opacity-0_2">
+                        <div class="js-counter g-font-size-35 g-font-weight-300 g-mb-7">83</div>
+                        <h4 class="h5 g-color-white-opacity-0_6">Projects</h4>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3 g-brd-right g-brd-white-opacity-0_2">
+                        <div class="js-counter g-font-size-35 g-font-weight-300 g-mb-7">7348</div>
+                        <h4 class="h5 g-color-white-opacity-0_6">Working Hours</h4>
+                    </div>
+
+                    <div class="col-lg-3 col-sm-3">
+                        <div class="js-counter g-font-size-35 g-font-weight-300 g-mb-7">904</div>
+                        <h4 class="h5 g-color-white-opacity-0_6">Followers</h4>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Counter #03 -->
+    </section>
+    <!-- End Counter -->
+
+{% endblock %}
+
+{% block js %}
+    <script type="text/javascript"
+            src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+
+        $('#carousel1').slick({
+            infinite: false,
+            draggable: false,
+            swipe: false,
+            arrows: false,
+            adaptiveHeight: true
+        });
+
+        $('.next').on('click', function () {
+            $('#carousel1').slick('slickNext');
+        });
+
+        $('.prev').on('click', function () {
+            $('#carousel1').slick('slickPrev');
+        });
+
+        $('[type-input]').on('click', function () {
+            load($(this).attr('type-input'), '', '', '');
+        });
+
+        $('[cat-input]').on('click', function () {
+            load('', $(this).attr('cat-input'), '', '');
+        });
+
+        $('.order').on('click', function () {
+            {#            $('#carousel1').slick('unslick');#}
+            order();
+        });
+
+        function load(type, cat, door, frame) {
+            call_api('post', '/load/', {}, {type: type, cat: cat, door: door, frame: frame});
+        }
+
+        function order() {
+            inpObj = $('[name=name]');
+            if (inpObj === "" || $(inpObj).valid() === false) {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[name=number]');
+            if (inpObj === "" || $(inpObj).valid() === false) {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[name=email]');
+            if (inpObj === "" || $(inpObj).valid() === false) {
+                inpObj.focus();
+                return;
+            }
+            inpObj = $('[name=address]');
+            if (inpObj === "" || $(inpObj).valid() === false) {
+                inpObj.focus();
+                return;
+            }
+            var door = $('.door');
+            var frame = $('.frame');
+            var data = {
+                'door_id': door.attr('data-door-style'),
+                'door_color_id': door.attr('data-door-color'),
+                'frame_id': frame.attr('data-frame-style'),
+                'frame_color_id': frame.attr('data-frame-color'),
+                'door_height': $('#door_height').text(),
+                'door_width': $('#door_width').text(),
+{#                'door_thickness': $('#door_thickness').text(),#}
+                'frame_height': $('#frame_height').text(),
+                'frame_width': $('#frame_width').text(),
+{#                'frame_thickness': $('#frame_thickness').text(),#}
+                'name': $('input[name=name]').val(),
+                'number': $('input[name=number]').val(),
+                'email': $('input[name=email]').val(),
+                'address': $('[name=address]').val(),
+                'status':'new_order'
+            };
+
+            call_api('post', '/order/', {}, data)
+        }
+
+        function slide(id) {
+            var slider = document.getElementById(id);
+            var output = document.getElementById("val_" + id);
+            output.innerHTML = slider.value;
+        }
+    </script>
+{% endblock %}

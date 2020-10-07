@@ -1,0 +1,48 @@
+{% load static %}
+<header id="header" class="clearfix">
+    <ul class="header-inner">
+        <li id="menu-trigger" data-trigger="#sidebar">
+            <div class="line-wrap">
+                <div class="line top"></div>
+                <div class="line center"></div>
+                <div class="line bottom"></div>
+            </div>
+        </li>
+
+        <li class="logo visible-md visible-lg" style="margin-top: -13px;">
+            <a href="{% url 'index' %}">
+                <img src="{% static 'image/logo.svg' %}">
+            </a>
+        </li>
+
+        <li class="logo hidden-lg hidden-md" style="margin-top: -4px; width: 60%;">
+            <a href="{% url 'index' %}" >
+                <img src="{% static 'image/logo.svg' %}" >
+            </a>
+        </li>
+
+
+        <li class="pull-right">
+            <ul class="top-menu">
+                <li class="dropdown">
+                    <a class="user-info p-0 m-0" data-toggle="dropdown"
+                       href="#">
+                        <i class="fa fa-user-circle tm-icon hidden-lg hidden-md" style="margin-top: -8px !important;"></i>
+                        <span class="p-5 m-t-5 visible-md visible-lg">
+                        {% if customer %}{{ customer }}{% else %} {{ request.user }} {% endif %}
+                         <i class="fa fa-chevron-circle-down "></i>
+                        </span>
+                        <i class="fa fa-chevron-down hidden-lg hidden-md"></i>
+                    </a>
+                    <ul class="dropdown-menu dm-icon pull-right">
+                        <li>
+                            <a href="{% url 'logout' %}{% if customer %}?e={{ customer }}{% endif %}">
+                                <i class="fa fa-power-off"></i> Logout
+                            </a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+</header>

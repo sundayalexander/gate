@@ -1,0 +1,22 @@
+{% load widget_tweaks %}
+
+<div class="card card-outline-info rounded-0">
+    <h3 class="card-header h5 text-black g-brd-transparent rounded-0">
+        <i class="fa fa-plus g-font-size-default g-mr-5"></i>
+        {{ title }}
+    </h3>
+
+    <div class="card-block">
+        <form class="form" enctype="multipart/form-data" method="post">{% csrf_token %}
+            <div class="form-body">
+                {% for field in form %}
+                    <label style="margin: 10px;" for="{{ field.id_for_label }}">{{ field.label }}</label>
+                    {% render_field field class="form-control rounded-0" %}
+                {% endfor %}
+                <button type="submit" class="btn btn-md u-btn-teal g-mr-10 g-mb-15"
+                        style="margin-top: 15px; margin-bottom: 15px;">Save
+                </button>
+            </div>
+        </form>
+    </div>
+</div>

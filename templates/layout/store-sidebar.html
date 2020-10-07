@@ -1,0 +1,16 @@
+<aside id="sidebar" class="sidebar c-overflow mCustomScrollbar _mCS_1 mCS-autoHide mCS_no_scrollbar">
+        <div id="mCSB_1" class="mCustomScrollBox mCS-minimal-dark mCSB_vertical_horizontal mCSB_outside"
+             tabindex="0">
+            <div id="mCSB_1_container"
+                 class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y mCS_x_hidden mCS_no_scrollbar_x"
+                 style="position: relative; top: 0px; left: 0px; width: 268px;" dir="ltr">
+                <ul class="main-menu">
+                    <li {% if request.resolver_match.kwargs.which == 'order' %}class="active"{% endif %}>
+                        <a href="{% url 'sales' which='order' %}">
+                            <i class="fa fa-pallet"></i> Door Colors
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </aside>

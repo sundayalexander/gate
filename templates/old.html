@@ -1,0 +1,153 @@
+<div class=" g-brd-none mb-2 " data-step-title="Template">
+    <div class="g-px-10 g-py-30" style="padding-top: 0.86rem !important;">
+        <h4 class="h4 g-color-gray-dark-v2 g-font-weight-400 text-center g-mb-25  door-slider-header">
+            Template Selection</h4>
+        <hr>
+        <div class="g-mb-5 col-12" style="height: 300px; overflow-y: auto;">
+            <div class="">
+                <div class="d-flex">
+                    <div class="align-self-center w-100">
+
+                        <div class="form-group g-mb-15">
+                            <label for="template">Select Campaign
+                                Template</label>
+                            <input type="hidden" id="image_no" value="">
+                            <select style="height: 50px" id="template"
+                                    class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15">
+                                {% if template %}
+                                    {% for temp in template %}
+                                        <option value="{{ temp.id }}"> {{ temp.name }}</option>
+                                    {% endfor %}
+                                {% endif %}
+                            </select>
+                        </div>
+                        <div id="template_display"
+                             style="margin: 0 auto;display:table">
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+
+                                                <span class="pull-right btn btn-md u-btn-orange wizard-next quote-text"
+                                                      style="border-radius: 25px;float: right;">Next <i
+                                                        class="fa fa-arrow-right"></i></span>
+        </div>
+    </div>
+</div>
+<div class="g-overflow-hidden g-brd-none mb-2 " data-step-title="Campaign Info">
+    <div class="g-px-10 g-py-30" style="padding-top: 0.86rem !important;">
+        <h4 class="h4 g-color-gray-dark-v2 g-font-weight-400 text-center g-mb-25  door-slider-header">
+            Compaign Information</h4>
+        <hr>
+        <div class="g-mb-5 col-12" style="height: 300px; overflow-y: auto;">
+            <div class="">
+                <div class="d-flex">
+                    <div class="align-self-center w-100">
+
+                        <div class="form-group g-mb-15">
+                            <input style="height: 50px"
+                                   class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15"
+                                   type="text" placeholder="Compaign Title"
+                                   id="title"
+                            >
+                        </div>
+                        <div class="form-group g-mb-10">
+                            <label>Campaign Subject</label>
+                            <input style="height: 50px"
+                                   class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15"
+                                   type="text" placeholder="Email Campaign Subject"
+                                   id="subject"
+                            >
+                        </div>
+                        <div class="form-group g-mb-10" id="image_field">
+                            <label>Compaign Image</label>
+                        </div>
+                        <div class="form-group g-mb-2">
+                                                <textarea
+                                                        class="form-control g-color-gray-dark-v2  g-brd-primary--focus g-rounded-5 g-pa-15"
+                                                        rows="3" placeholder="Email Content" id="email_content"
+                                                ></textarea>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+                                               <span class="pull-left btn btn-md u-btn-orange wizard-prev quote-text"
+                                                     style="border-radius: 25px;float: left;"><i
+                                                       class="fa fa-arrow-left"></i> Previous</span>
+            <span class="pull-right btn btn-md u-btn-orange wizard-next quote-text"
+                  style="border-radius: 25px;float: right;">Next <i
+                    class="fa fa-arrow-right"></i></span>
+        </div>
+    </div>
+</div>
+<div class="g-overflow-hidden g-brd-none mb-2 "
+     data-step-title="Email User Type">
+    <div class="g-px-10 g-py-30" style="padding-top: 0.86rem !important;">
+        <h4 class="h4 g-color-gray-dark-v2 g-font-weight-400 text-center g-mb-25  door-slider-header">
+            Campaign Scheduler</h4>
+        <hr>
+        <div class="g-mb-5 col-12" style="height: 300px; overflow-y: auto;">
+            <div class="">
+                <div class="d-flex">
+                    <div class="align-self-center w-100">
+
+                        <div class="form-group g-mb-15">
+                            <label for="Email Type">Which Email you wish to
+                                use</label>
+                            <select style="height: 50px !important;"
+                                    class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5 g-pa-15"
+                                    id="send_type">
+
+                                <option value="system"> Email on the System</option>
+                                <option value="csv"> Let me upload a CSV file
+                                </option>
+
+                            </select>
+                        </div>
+                        <div class="form-group g-mb-15" id="csv_open"
+                             style="display: none">
+                            <label for="email_file">Kindly upload a CSV file</label>
+                            <input style="height: 50px !important;"
+                                   class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5"
+                                   type="file"
+                                   id="csv"
+                            >
+                        </div>
+                        <div class="form-group g-mb-15">
+                            <label for="schedule_date">Email Schedule Date</label>
+                            <input style="height: 50px !important;"
+                                   class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5"
+                                   type="text"
+                                   id="schedule_date"
+                            >
+                        </div>
+                        <div class="form-group g-mb-15">
+                            <label for="schedule_date">Email Schedule Time</label>
+                            <input style="height: 50px !important;"
+                                   class="form-control g-color-gray-dark-v2 g-brd-black-opacity-0_2 g-brd-primary--focus g-rounded-5"
+                                   type="text"
+                                   id="schedule_time"
+                            >
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="">
+                <span class="pull-left btn btn-md u-btn-orange wizard-prev quote-text"
+                      style="border-radius: 25px;float: left;"><i
+                        class="fa fa-arrow-left"></i> Previous</span>
+            <button type="submit"
+                    class="pull-right btn btn-md u-btn-teal order quote-text quote-text"
+                    style="border-radius: 25px;float: right;">Submit <i
+                    class="fa fa-arrow-right"></i></button>
+        </div>
+    </div>
+</div>
